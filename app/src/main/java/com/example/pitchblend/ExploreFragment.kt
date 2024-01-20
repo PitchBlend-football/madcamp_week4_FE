@@ -25,6 +25,10 @@ class ExploreFragment : Fragment() {
     private lateinit var mLayoutManager: RecyclerView.LayoutManager
     private lateinit var queue: RequestQueue
 
+    private lateinit var secondRecyclerView: RecyclerView
+    private lateinit var secondAdapter: RecyclerView.Adapter<*>
+    private lateinit var secondLayoutManager: RecyclerView.LayoutManager
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,16 +39,78 @@ class ExploreFragment : Fragment() {
         mRecyclerView = view.findViewById(R.id.my_recycler_view)
         mRecyclerView.setHasFixedSize(true)
         mLayoutManager = LinearLayoutManager(requireContext())
-        mRecyclerView.layoutManager = mLayoutManager
+        mRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+
+        secondRecyclerView = view.findViewById(R.id.second_recycler_view)
+        secondRecyclerView.setHasFixedSize(true)
+        secondLayoutManager = LinearLayoutManager(requireContext())
+        secondRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
         queue = Volley.newRequestQueue(requireContext())
         getNews()
+        getSecondNews()
 
         return view
     }
 
+
+    private fun getSecondNews() {
+        val url = "https://newsapi.org/v2/everything?q=epl&language=en&apiKey=913a13e56be549f29ab1a4887d74b80c"
+
+        val stringRequest = object : StringRequest(
+            Request.Method.GET,
+            url,
+            Response.Listener<String> { response ->
+                Log.d("SECOND_NEWS", response)
+
+                try {
+                    val jsonObj = JSONObject(response)
+                    val arrayArticles = jsonObj.getJSONArray("articles")
+
+                    val news = ArrayList<NewsData>()
+
+                    for (i in 0 until arrayArticles.length()) {
+                        val obj = arrayArticles.getJSONObject(i)
+
+                        Log.d("SECOND_NEWS", obj.toString())
+
+                        // urlToImage가 null 또는 빈 문자열이면 해당 뉴스를 건너뜁니다.
+                        val imageUrl = obj.getString("urlToImage")
+                        if (imageUrl.isNullOrBlank()) {
+                            continue
+                        }
+
+                        val newsData = NewsData().apply {
+                            title = obj.getString("title")
+                            urlToImage = imageUrl
+                        }
+
+                        newsData.url = obj.getString("url")
+                        news.add(newsData)
+                    }
+
+                    secondAdapter = MySecondAdapter(news, requireContext())
+                    secondRecyclerView.adapter = secondAdapter
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+            },
+            Response.ErrorListener { error ->
+                // Handle error
+            }) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["User-Agent"] = "Mozilla/5.0"
+                return headers
+            }
+        }
+
+        queue.add(stringRequest)
+    }
+
     private fun getNews() {
-        val url = "https://newsapi.org/v2/top-headlines?country=gb&category=sports&apiKey=913a13e56be549f29ab1a4887d74b80c"
+        val url = "https://newsapi.org/v2/everything?q=premierleague&language=en&apiKey=913a13e56be549f29ab1a4887d74b80c"
 
         val stringRequest = object : StringRequest(
             Request.Method.GET,
@@ -66,7 +132,6 @@ class ExploreFragment : Fragment() {
                         val newsData = NewsData().apply {
                             title = obj.getString("title")
                             urlToImage = obj.getString("urlToImage")
-                            content = obj.getString("content")
                         }
 
                         newsData.url = obj.getString("url")
