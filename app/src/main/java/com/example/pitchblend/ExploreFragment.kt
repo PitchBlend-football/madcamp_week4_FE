@@ -1,59 +1,93 @@
 package com.example.pitchblend
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import org.json.JSONException
+import org.json.JSONObject
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ExploreFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ExploreFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var mRecyclerView: RecyclerView
+    private lateinit var mAdapter: RecyclerView.Adapter<*>
+    private lateinit var mLayoutManager: RecyclerView.LayoutManager
+    private lateinit var queue: RequestQueue
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_explore, container, false)
+        val view = inflater.inflate(R.layout.fragment_explore, container, false)
+
+        mRecyclerView = view.findViewById(R.id.my_recycler_view)
+        mRecyclerView.setHasFixedSize(true)
+        mLayoutManager = LinearLayoutManager(requireContext())
+        mRecyclerView.layoutManager = mLayoutManager
+
+        queue = Volley.newRequestQueue(requireContext())
+        getNews()
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ExploreFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ExploreFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun getNews() {
+        val url = "https://newsapi.org/v2/top-headlines?country=gb&category=sports&apiKey=913a13e56be549f29ab1a4887d74b80c"
+
+        val stringRequest = object : StringRequest(
+            Request.Method.GET,
+            url,
+            Response.Listener<String> { response ->
+                Log.d("NEWS", response)
+
+                try {
+                    val jsonObj = JSONObject(response)
+                    val arrayArticles = jsonObj.getJSONArray("articles")
+
+                    val news = ArrayList<NewsData>()
+
+                    for (i in 0 until arrayArticles.length()) {
+                        val obj = arrayArticles.getJSONObject(i)
+
+                        Log.d("NEWS", obj.toString())
+
+                        val newsData = NewsData().apply {
+                            title = obj.getString("title")
+                            urlToImage = obj.getString("urlToImage")
+                            content = obj.getString("content")
+                        }
+
+                        news.add(newsData)
+                    }
+
+                    mAdapter = MyAdapter(news, requireContext())
+                    mRecyclerView.adapter = mAdapter
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
                 }
+            },
+            Response.ErrorListener { error ->
+
+            }) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["User-Agent"] = "Mozilla/5.0"
+                // 필요한 경우 다른 헤더도 추가 가능
+                return headers
             }
+        }
+
+        queue.add(stringRequest)
     }
 }
