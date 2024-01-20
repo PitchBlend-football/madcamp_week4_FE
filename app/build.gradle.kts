@@ -53,4 +53,17 @@ dependencies {
 
     // cardview를 위한
     implementation("androidx.cardview:cardview:1.0.0")
+
+    // 서버로부터 정보 가져오기 위한
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.4.1")
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.0")
+    implementation ("com.squareup.okhttp3:okhttp:4.9.0")
+    implementation("com.squareup.picasso:picasso:2.71828")
+
+    // 파일 경로로 된 이미지를 띄우기 위한 implementation
+    // 및 gif 이미지를 위한
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 }
