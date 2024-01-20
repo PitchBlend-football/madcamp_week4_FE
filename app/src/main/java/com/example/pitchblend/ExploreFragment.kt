@@ -1,3 +1,5 @@
+// ExploreFragment.kt
+
 package com.example.pitchblend
 
 import android.os.Bundle
@@ -67,6 +69,7 @@ class ExploreFragment : Fragment() {
                             content = obj.getString("content")
                         }
 
+                        newsData.url = obj.getString("url")
                         news.add(newsData)
                     }
 
