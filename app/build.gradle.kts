@@ -33,6 +33,12 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    
+    // navigation bar를 위한
+    buildFeatures {
+        viewBinding = true
+    }
+
 }
 
 dependencies {
