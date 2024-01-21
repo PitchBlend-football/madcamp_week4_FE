@@ -31,6 +31,7 @@ import kotlin.math.roundToInt
 class DetailMatchActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailMatchBinding
+    private lateinit var backBtn: ImageButton
     private lateinit var seeAiExpectBtn: ImageButton // AI expect 토글 보는 버튼
     private lateinit var aiExpectCardView: CardView // AI expect 메인 카드뷰 부분
     private val api = RetrofitInterface.create() // 서버에서 불러오기
@@ -96,6 +97,7 @@ class DetailMatchActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initiation()
+        clickBackBtn()
         clickAiExpectBtn()
         GlobalScope.launch(Dispatchers.Main) {
             val matchId = getMatchId("Arsenal", "Tottenham")
@@ -111,6 +113,7 @@ class DetailMatchActivity : AppCompatActivity() {
     }
 
     private fun initiation() {
+        backBtn = binding.backBtn
         seeAiExpectBtn = binding.aiDownBtn
         aiExpectCardView = binding.aiCardview
 
@@ -146,6 +149,12 @@ class DetailMatchActivity : AppCompatActivity() {
         away_recent_encounters_num = binding.recentEncountersCardAwayNum
         draw_recent_encounters_num = binding.recentEncountersCardDrawNum
 
+    }
+
+    private fun clickBackBtn() {
+        backBtn.setOnClickListener {
+            finish()
+        }
     }
 
     private fun clickAiExpectBtn() {

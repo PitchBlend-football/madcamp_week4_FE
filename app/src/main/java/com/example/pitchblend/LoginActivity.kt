@@ -3,6 +3,7 @@ package com.example.pitchblend
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -16,6 +17,9 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var signInBtn: Button
+    private lateinit var bottomSignInBtn: Button
+    private lateinit var signUpBtn: Button
+    private lateinit var bottomSignUpBtn: Button
     private lateinit var parentLayout: ConstraintLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,29 +29,17 @@ class LoginActivity : AppCompatActivity() {
 
         initiation()
         clickSignIn()
-
+        clickSignUp()
     }
 
     private fun initiation() {
         signInBtn = binding.signInBtn
         parentLayout = binding.parentConstraintLayout
+        bottomSignInBtn = binding.bottomsheetSignInBtn
+        signUpBtn = binding.signUpBtn
+        bottomSignUpBtn = binding.bottomsheetSignUpBtn
 
     }
-
-//    private fun clickSignIn() {
-//        val bottomSheetView = binding.bottomSheet
-//        val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetView)
-//        val fullHeight = resources.getDimension(R.dimen.full_height)
-//        signInBtn.setOnClickListener {
-//            bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-//        }
-//        parentLayout.setOnClickListener {
-//            if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED) {
-//                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-//            }
-//        }
-//
-//    }
 
     private fun clickSignIn() {
         val bottomSheetView = binding.bottomSheet
@@ -92,5 +84,15 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
+    private fun clickSignUp() {
+        signUpBtn.setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+        }
+        bottomSignUpBtn.setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+        }
+    }
 
 }
