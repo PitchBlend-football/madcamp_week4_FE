@@ -24,8 +24,13 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        binding.btn.setOnClickListener {
+        binding.beforeBtn.setOnClickListener {
             val intent = Intent(requireContext(), DetailMatchActivity::class.java)
+            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+        }
+
+        binding.afterBtn.setOnClickListener {
+            val intent = Intent(requireContext(), AfterMatchActivity::class.java)
             startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
         }
 

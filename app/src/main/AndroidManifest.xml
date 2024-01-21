@@ -15,6 +15,9 @@
         android:theme="@style/Theme.PitchBlend"
         tools:targetApi="31">
         <activity
+            android:name=".AfterMatchActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetailMatchActivity"
             android:exported="false" />
         <activity
