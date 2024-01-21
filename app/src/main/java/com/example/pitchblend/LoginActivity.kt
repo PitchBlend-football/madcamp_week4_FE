@@ -82,6 +82,13 @@ class LoginActivity : AppCompatActivity() {
             }
             override fun onSlide(bottomSheet: View, slideOffset: Float) {}
         })
+
+
+        bottomSignInBtn.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+        }
+
     }
 
     private fun clickSignUp() {
