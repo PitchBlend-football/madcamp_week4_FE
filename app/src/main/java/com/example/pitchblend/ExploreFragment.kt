@@ -182,63 +182,63 @@ class ExploreFragment : Fragment() {
     }
 
     private fun searchYoutube(query: String) {
-        // YouTube API 호출 URL 설정
-        val searchURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyDGnaQkcHDw8-7QVzKs5VtCXIbkI8JFIZ8"
-        val keyword = "&q=" + query
-        val maxResultsParam = "&maxResults=1"  // 여기를 1로 수정하여 하나의 비디오만 가져오도록 함
-        val youtubeSearchURL = searchURL + keyword + maxResultsParam
-
-        // 네트워크 통신을 위한 객체 생성
-        val requestQueue = Volley.newRequestQueue(requireContext())
-        val jsonObjectRequest = JsonObjectRequest(Request.Method.GET, youtubeSearchURL, null,
-            { response ->
-                // API 호출 결과 실행
-                try {
-                    val jArr = response.getJSONArray("items")
-
-                    if (jArr.length() > 0) {
-                        val jData = jArr.optJSONObject(0)
-                        val jid = jData.optJSONObject("id")
-                        val videoId = jid.optString("videoId")
-
-                        // 썸네일 이미지 및 제목을 해당 뷰에 설정
-                        val thumbnailImageView: ImageView? = view?.findViewById(R.id.youtubeThumbnailImageView)
-                        val titleTextView: TextView? = view?.findViewById(R.id.youtubeTitleTextView)
-
-                        thumbnailImageView?.let {
-                            Glide.with(requireContext())
-                                .load("https://i.ytimg.com/vi/$videoId/hqdefault.jpg") // 썸네일 이미지 URL
-                                .into(it)
-                        }
-
-                        titleTextView?.text = jData.optJSONObject("snippet")?.optString("title")
-
-                        // 클릭 시 유튜브 비디오를 재생하기 위한 Intent 생성
-                        titleTextView?.setOnClickListener {
-                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=$videoId"))
-
-                            // Intent를 처리할 수 있는 액티비티가 있는지 확인 후 실행
-                            if (intent.resolveActivity(requireContext().packageManager) != null) {
-                                startActivity(intent)
-                            } else {
-                                // 유튜브 앱이나 웹 페이지가 없는 경우 사용자에게 메시지 표시
-                                Toast.makeText(requireContext(), "YouTube app not installed", Toast.LENGTH_SHORT).show()
-                            }
-                        }
-                    } else {
-                        // 검색 결과가 없을 경우 처리
-                        val thumbnailImageView: ImageView? = view?.findViewById(R.id.youtubeThumbnailImageView)
-                        val titleTextView: TextView? = view?.findViewById(R.id.youtubeTitleTextView)
-
-                        titleTextView?.text = "No videos found on YouTube"
-                    }
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-                }
-            },
-            { error -> Log.i("onErrorResponse", "" + error) })
-
-        requestQueue.add(jsonObjectRequest)
+//        // YouTube API 호출 URL 설정
+//        val searchURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyDGnaQkcHDw8-7QVzKs5VtCXIbkI8JFIZ8"
+//        val keyword = "&q=" + query
+//        val maxResultsParam = "&maxResults=1"  // 여기를 1로 수정하여 하나의 비디오만 가져오도록 함
+//        val youtubeSearchURL = searchURL + keyword + maxResultsParam
+//
+//        // 네트워크 통신을 위한 객체 생성
+//        val requestQueue = Volley.newRequestQueue(requireContext())
+//        val jsonObjectRequest = JsonObjectRequest(Request.Method.GET, youtubeSearchURL, null,
+//            { response ->
+//                // API 호출 결과 실행
+//                try {
+//                    val jArr = response.getJSONArray("items")
+//
+//                    if (jArr.length() > 0) {
+//                        val jData = jArr.optJSONObject(0)
+//                        val jid = jData.optJSONObject("id")
+//                        val videoId = jid.optString("videoId")
+//
+//                        // 썸네일 이미지 및 제목을 해당 뷰에 설정
+//                        val thumbnailImageView: ImageView? = view?.findViewById(R.id.youtubeThumbnailImageView)
+//                        val titleTextView: TextView? = view?.findViewById(R.id.youtubeTitleTextView)
+//
+//                        thumbnailImageView?.let {
+//                            Glide.with(requireContext())
+//                                .load("https://i.ytimg.com/vi/$videoId/hqdefault.jpg") // 썸네일 이미지 URL
+//                                .into(it)
+//                        }
+//
+//                        titleTextView?.text = jData.optJSONObject("snippet")?.optString("title")
+//
+//                        // 클릭 시 유튜브 비디오를 재생하기 위한 Intent 생성
+//                        titleTextView?.setOnClickListener {
+//                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=$videoId"))
+//
+//                            // Intent를 처리할 수 있는 액티비티가 있는지 확인 후 실행
+//                            if (intent.resolveActivity(requireContext().packageManager) != null) {
+//                                startActivity(intent)
+//                            } else {
+//                                // 유튜브 앱이나 웹 페이지가 없는 경우 사용자에게 메시지 표시
+//                                Toast.makeText(requireContext(), "YouTube app not installed", Toast.LENGTH_SHORT).show()
+//                            }
+//                        }
+//                    } else {
+//                        // 검색 결과가 없을 경우 처리
+//                        val thumbnailImageView: ImageView? = view?.findViewById(R.id.youtubeThumbnailImageView)
+//                        val titleTextView: TextView? = view?.findViewById(R.id.youtubeTitleTextView)
+//
+//                        titleTextView?.text = "No videos found on YouTube"
+//                    }
+//                } catch (e: JSONException) {
+//                    e.printStackTrace()
+//                }
+//            },
+//            { error -> Log.i("onErrorResponse", "" + error) })
+//
+//        requestQueue.add(jsonObjectRequest)
     }
     private fun getSecondNews() {
         val url = "https://newsapi.org/v2/everything?q=epl&language=en&apiKey=913a13e56be549f29ab1a4887d74b80c"
