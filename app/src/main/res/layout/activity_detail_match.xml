@@ -186,7 +186,7 @@
                             android:id="@+id/expected_result_graph_away"
                             android:layout_width="300dp"
                             android:layout_height="5dp"
-                            app:cardBackgroundColor="#FFFFFF"
+                            app:cardBackgroundColor="#267DFF"
                             app:cardCornerRadius="2dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -207,7 +207,7 @@
                             android:id="@+id/expected_result_graph_home"
                             android:layout_width="300dp"
                             android:layout_height="5dp"
-                            app:cardBackgroundColor="#DB0007"
+                            app:cardBackgroundColor="#FFE014"
                             app:cardCornerRadius="2dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/expected_result_graph_away"
@@ -230,7 +230,7 @@
                                 android:id="@+id/card_home"
                                 android:layout_width="40dp"
                                 android:layout_height="25dp"
-                                app:cardBackgroundColor="#DB0007"
+                                app:cardBackgroundColor="#FFE014"
                                 app:cardCornerRadius="7dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -242,7 +242,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:text=""
-                                    android:textColor="@color/white"
+                                    android:textColor="@color/black"
                                     android:textSize="18sp" />
 
                             </androidx.cardview.widget.CardView>
@@ -309,7 +309,7 @@
                                 android:layout_width="40dp"
                                 android:layout_height="25dp"
                                 android:layout_marginEnd="5dp"
-                                app:cardBackgroundColor="#FFFFFF"
+                                app:cardBackgroundColor="#267DFF"
                                 app:cardCornerRadius="7dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/expected_result_text_away"
@@ -321,7 +321,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:text=""
-                                    android:textColor="@color/black"
+                                    android:textColor="@color/white"
                                     android:textSize="18sp" />
 
                             </androidx.cardview.widget.CardView>
@@ -715,7 +715,7 @@
                     android:id="@+id/recent_encounters_graph_away"
                     android:layout_width="300dp"
                     android:layout_height="5dp"
-                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardBackgroundColor="#267DFF"
                     app:cardCornerRadius="2dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -736,7 +736,7 @@
                     android:id="@+id/recent_encounters_graph_home"
                     android:layout_width="300dp"
                     android:layout_height="5dp"
-                    app:cardBackgroundColor="#DB0007"
+                    app:cardBackgroundColor="#FFE014"
                     app:cardCornerRadius="2dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/recent_encounters_graph_away"
@@ -759,7 +759,7 @@
                         android:id="@+id/recent_encounters_card_home"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        app:cardBackgroundColor="#DB0007"
+                        app:cardBackgroundColor="#FFE014"
                         app:cardCornerRadius="7dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -771,7 +771,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text=""
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:textSize="18sp" />
 
                     </androidx.cardview.widget.CardView>
@@ -838,7 +838,7 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_marginEnd="5dp"
-                        app:cardBackgroundColor="#FFFFFF"
+                        app:cardBackgroundColor="#267DFF"
                         app:cardCornerRadius="7dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/recent_encounters_text_away"
@@ -850,7 +850,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text=""
-                            android:textColor="@color/black"
+                            android:textColor="@color/white"
                             android:textSize="18sp" />
 
                     </androidx.cardview.widget.CardView>

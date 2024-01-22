@@ -16,6 +16,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import com.example.pitchblend.databinding.ActivityDetailMatchBinding
 import com.google.gson.JsonObject
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -99,16 +100,13 @@ class DetailMatchActivity : AppCompatActivity() {
         initiation()
         clickBackBtn()
         clickAiExpectBtn()
+        val matchId = intent.getIntExtra("matchId", -1)
+        Log.e("matchId", "matchId: $matchId")
         GlobalScope.launch(Dispatchers.Main) {
-            val matchId = getMatchId("Arsenal", "Tottenham")
+            getMatchExpect(matchId)
             // 결과를 사용하는 로직
-            GlobalScope.launch(Dispatchers.Main) {
-                getMatchExpect(matchId)
-                // 결과를 사용하는 로직
-                matchExpectedResultsAi()
-                matchPreview()
-            }
-            Log.d("DetailMatchActivity", matchId.toString())
+            matchExpectedResultsAi()
+            matchPreview()
         }
     }
 
@@ -116,6 +114,14 @@ class DetailMatchActivity : AppCompatActivity() {
         backBtn = binding.backBtn
         seeAiExpectBtn = binding.aiDownBtn
         aiExpectCardView = binding.aiCardview
+
+        // intent로 넘겨온 애들 모두 ㄱㄱ
+        binding.matchTitle.text = intent.getStringExtra("matchTeams")
+        Picasso.get().load("${intent.getStringExtra("matchHomeLogo")}").into(binding.homeTeamLogo)
+        Picasso.get().load("${intent.getStringExtra("matchAwayLogo")}").into(binding.awayTeamLogo)
+        binding.matchStartDate.text = intent.getStringExtra("matchDate")
+        binding.matchStartTime.text = intent.getStringExtra("matchTime")
+
 
         home_win_percent_txt = binding.cardHomePercent
         away_win_percent_txt = binding.cardAwayPercent
@@ -180,37 +186,37 @@ class DetailMatchActivity : AppCompatActivity() {
         }
     }
 
-    private suspend fun getMatchId(home: String, away: String): Int? {
-        return withContext(Dispatchers.IO) {
-            var matchId: Int? = null
-            val call = api.getOneDayMatchInfo("2023-09-24", "2023")
-            try {
-                val response = call.execute()
-                if (response.isSuccessful) {
-                    val result = response.body()
-                    if (result != null) {
-                        for (index in result.response) {
-                            val matchTeams = index.getAsJsonObject("teams")
-                            if (matchTeams.getAsJsonObject("home")?.get("name")?.asString == home || matchTeams.getAsJsonObject("home")?.get("name")?.asString == away) {
-                                matchId = index.getAsJsonObject("fixture")?.get("id")?.asInt
-                                break
-                            }
-                        }
-                    } else {
-                        // API 응답이 null인 경우의 처리
-                        Log.e(ContentValues.TAG, "API 응답이 null입니다.")
-                    }
-                } else {
-                    // HTTP 요청이 실패한 경우의 처리
-                    Log.e(ContentValues.TAG, "HTTP 요청 실패: ${response.code()}")
-                }
-            } catch (e: Exception) {
-                // 예외 처리
-                Log.e(ContentValues.TAG, "Error: ${e.message}")
-            }
-            matchId
-        }
-    }
+//    private suspend fun getMatchId(home: String, away: String): Int? {
+//        return withContext(Dispatchers.IO) {
+//            var matchId: Int? = null
+//            val call = api.getOneDayMatchInfo("2023-09-24", "2023")
+//            try {
+//                val response = call.execute()
+//                if (response.isSuccessful) {
+//                    val result = response.body()
+//                    if (result != null) {
+//                        for (index in result.response) {
+//                            val matchTeams = index.getAsJsonObject("teams")
+//                            if (matchTeams.getAsJsonObject("home")?.get("name")?.asString == home || matchTeams.getAsJsonObject("home")?.get("name")?.asString == away) {
+//                                matchId = index.getAsJsonObject("fixture")?.get("id")?.asInt
+//                                break
+//                            }
+//                        }
+//                    } else {
+//                        // API 응답이 null인 경우의 처리
+//                        Log.e(ContentValues.TAG, "API 응답이 null입니다.")
+//                    }
+//                } else {
+//                    // HTTP 요청이 실패한 경우의 처리
+//                    Log.e(ContentValues.TAG, "HTTP 요청 실패: ${response.code()}")
+//                }
+//            } catch (e: Exception) {
+//                // 예외 처리
+//                Log.e(ContentValues.TAG, "Error: ${e.message}")
+//            }
+//            matchId
+//        }
+//    }
 
     private suspend fun getMatchExpect(matchId: Int?, dispatcher: CoroutineDispatcher = Dispatchers.IO) {
         try {
