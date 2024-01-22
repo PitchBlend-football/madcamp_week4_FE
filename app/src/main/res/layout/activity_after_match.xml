@@ -69,7 +69,7 @@
                     android:id="@+id/home_team_logo"
                     android:layout_width="50.98dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/arsenal_logo"
+                    android:src="@android:color/transparent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/match_score"
                     app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +79,7 @@
                     android:id="@+id/away_team_logo"
                     android:layout_width="50.05dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/tottenham_logo"
+                    android:src="@android:color/transparent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/match_score"
@@ -98,7 +98,7 @@
                         android:id="@+id/match_home_goals"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2"
+                        android:text=""
                         android:textColor="@color/white"
                         android:textSize="40sp" />
                     <TextView
@@ -111,7 +111,7 @@
                         android:id="@+id/match_away_goals"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2"
+                        android:text=""
                         android:textColor="@color/white"
                         android:textSize="40sp" />
 
@@ -149,7 +149,7 @@
                     android:id="@+id/home_team_scorers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Romero 26’ (OG)\nSaka 54’ (Pen)"
+                    android:text=""
                     android:textAlignment="textEnd"
                     android:textColor="@color/white"
                     android:textSize="12sp"
@@ -162,7 +162,7 @@
                     android:id="@+id/away_team_scorers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Son 42’, 55’"
+                    android:text=""
                     android:textAlignment="textStart"
                     android:textColor="@color/white"
                     android:textSize="12sp"

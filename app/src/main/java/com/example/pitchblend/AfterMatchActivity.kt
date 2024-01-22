@@ -133,16 +133,16 @@ class AfterMatchActivity : AppCompatActivity() {
                     "Offsides" -> { offsideAway.text = if (stat.value != null) { stat.value.toString().replace(".0", "") } else { "0" }}
                     "Ball Possession" -> {
                         possessionAway.text = if (stat.value != null) { stat.value.toString() } else { "0%" }
-                        // 그래프 길이 조정하기
-                        val awayLayoutParam = possessionGraphAway.layoutParams
-                        if (stat.value != null) {
-                            val away_possession_length = dpToPx300(stat.value.toString().replace("%", "").toInt() / 100f)
-                            awayLayoutParam.width = away_possession_length
-                            possessionGraphAway.layoutParams = awayLayoutParam
-                        } else {
-                            awayLayoutParam.width = 0
-                            possessionGraphAway.layoutParams = awayLayoutParam
-                        }
+//                        // 그래프 길이 조정하기
+//                        val awayLayoutParam = possessionGraphAway.layoutParams
+//                        if (stat.value != null) {
+//                            val away_possession_length = dpToPx300(stat.value.toString().replace("%", "").toInt() / 100f)
+//                            awayLayoutParam.width = away_possession_length
+//                            possessionGraphAway.layoutParams = awayLayoutParam
+//                        } else {
+//                            awayLayoutParam.width = 0
+//                            possessionGraphAway.layoutParams = awayLayoutParam
+//                        }
                     }
                     "Yellow Cards" -> { yellowAway.text = if (stat.value != null) { stat.value.toString().replace(".0", "") } else { "0" }}
                     "Red Cards" -> { redAway.text = if (stat.value != null) { stat.value.toString().replace(".0", "") } else { "0" }}
