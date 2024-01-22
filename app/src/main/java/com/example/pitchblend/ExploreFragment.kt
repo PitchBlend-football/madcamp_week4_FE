@@ -13,7 +13,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -43,8 +42,6 @@ class ExploreFragment : Fragment() {
     private lateinit var mAdapter: RecyclerView.Adapter<*>
     private lateinit var mLayoutManager: RecyclerView.LayoutManager
     private lateinit var queue: RequestQueue
-    private lateinit var toggleLayout: LinearLayout
-    private var aiTitleTextView: TextView? = null
 
     private lateinit var secondRecyclerView: RecyclerView
     private lateinit var secondAdapter: RecyclerView.Adapter<*>
@@ -56,6 +53,7 @@ class ExploreFragment : Fragment() {
 
 
     private lateinit var accessToken: String
+
 
     private val api = RetrofitInterface.create()
 
@@ -91,6 +89,7 @@ class ExploreFragment : Fragment() {
         queue = Volley.newRequestQueue(requireContext())
         getNews()
         getSecondNews()
+        getThirdNews()
 
 
         setupToggleAnimation(view)
@@ -116,9 +115,9 @@ class ExploreFragment : Fragment() {
                             teamName = teamInfo.teamName
                             updateUI(teamInfo)
                             val searchQuery = "$teamName man latest interview with couch"
-                            searchYoutube(searchQuery)
+                            //searchYoutube(searchQuery)
                             Log.e("youtubeSearch", searchQuery)
-                            getThirdNews(teamInfo)
+
                         } else {
                             // 팀 정보가 null인 경우 처리
                             Log.e(ContentValues.TAG, "null이냐")
@@ -193,7 +192,7 @@ class ExploreFragment : Fragment() {
         }
     }
 
-    private fun searchYoutube(query: String) {
+    /*private fun searchYoutube(query: String) {
         // YouTube API 호출 URL 설정
         val searchURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyDk0muXlsKIlY5vCBd35KvCOZlx9HDyw8M"
         val keyword = "&q=" + query
@@ -252,6 +251,10 @@ class ExploreFragment : Fragment() {
 
         requestQueue.add(jsonObjectRequest)
     }
+
+     */
+
+
     private fun getSecondNews() {
         val url = "https://newsapi.org/v2/everything?q=epl&language=en&apiKey=913a13e56be549f29ab1a4887d74b80c"
 
@@ -356,8 +359,12 @@ class ExploreFragment : Fragment() {
         queue.add(stringRequest)
     }
 
-    private fun getThirdNews(teamInfo: TeamInfo) {
-        val teamName = teamInfo.teamName
+    private fun getThirdNews() {
+        // UserProfile 객체 가져오기
+        val userProfile = UserProfileManager.getUserProfile()
+
+        // UserProfile 객체에서 teamName을 가져옴
+        val teamName = userProfile?.teamName
         val url = "https://newsapi.org/v2/everything?" + "q=${teamName}" +
                 "&language=en" +
                 "&apiKey=913a13e56be549f29ab1a4887d74b80c"

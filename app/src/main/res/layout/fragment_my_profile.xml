@@ -44,6 +44,7 @@
                     android:orientation="vertical">
                     
                     <TextView
+                        android:id="@+id/nickname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="쿼카"
@@ -51,6 +52,7 @@
                         android:textSize="20sp"/>
 
                     <TextView
+                        android:id="@+id/email_txt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="a@n1.com"
@@ -107,6 +109,7 @@
                     android:paddingVertical="10dp">
 
                     <ImageView
+                        android:id="@+id/teamLogo"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:src="@drawable/tottenham_logo"/>
@@ -119,6 +122,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/teamName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="TOTTENHAM HOTSPUR"
@@ -126,6 +130,7 @@
                             android:textSize="16sp"/>
 
                         <TextView
+                            android:id="@+id/teamAddress"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Tottenham Hotspur Stadium, London, England"

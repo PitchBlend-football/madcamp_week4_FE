@@ -39,9 +39,7 @@ class LoginActivity : AppCompatActivity() {
         params["email"] = email
         params["password"] = password
 
-        // HashMap을 Java의 Map으로 변환
         val paramMap: Map<String, String> = params
-
         val jsonObject = JSONObject(paramMap)
 
         val request = JsonObjectRequest(
@@ -52,24 +50,38 @@ class LoginActivity : AppCompatActivity() {
                     saveAccessToken(accessToken)
                     Log.d("LoginActivity", "Login success. Access Token: $accessToken")
 
+                    val userProfile = UserProfile(
+                        response.getString("access_token"),
+                        response.getString("refresh_token"),
+                        response.getString("email"),
+                        response.getString("username"),
+                        response.getString("phone_number"),
+                        response.getString("nickname"),
+                        response.getInt("selected_team_id"),
+                        response.getString("team_name"),
+                        response.getString("logo_url")
+                    )
+
+                    // UserProfileManager를 통해 사용자 프로필 저장
+                    UserProfileManager.saveUserProfile(userProfile)
+
                     // 로그인 성공 후 MainActivity로 이동
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP))
-                    finish()  // 현재 화면을 종료하여 뒤로 가기 시 로그인 화면이 나오지 않도록 함
+                    finish()
                 } catch (e: Exception) {
                     e.printStackTrace()
                     Log.e("LoginActivity", "Login failed. Exception: ${e.message}")
                 }
             },
             Response.ErrorListener { error ->
-                // 에러 처리 코드
                 error.printStackTrace()
             }
         )
 
-        // Volley 큐에 요청을 추가
         Volley.newRequestQueue(this).add(request)
     }
+
 
 
 
