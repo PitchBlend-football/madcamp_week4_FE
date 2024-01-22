@@ -16,13 +16,132 @@
         android:textColor="@color/white"
         android:textSize="24sp" />
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="370dp"
+        android:layout_height="43dp"
+        android:layout_below="@id/newsUpdateTextView"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        app:cardBackgroundColor="@color/item_purple"
+        app:cardCornerRadius="6.2dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ai_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="6dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@android:color/transparent">
+
+            <ImageView
+                android:id="@+id/ai_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ai_document"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/ai_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Please Log in !"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ai_icon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/ai_down_btn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/arrow_down"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/toggle"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/card_view"
+
+        android:layout_marginTop="100dp"
+        app:cardBackgroundColor="@color/item_purple"
+        app:cardCornerRadius="6.2dp"
+        app:layout_constraintStart_toStartOf="@id/card_view">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/headline"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="On Youtube"
+                android:textColor="@color/white"
+                android:textSize="19sp"/>
+
+            <ImageView
+                android:id="@+id/youtubeThumbnailImageView"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/clop"
+                android:layout_centerInParent="true"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toBottomOf="@id/headline"/>
+
+            <ImageView
+                android:id="@+id/youtube_back"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/youtube_background"
+                android:layout_centerInParent="true"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toBottomOf="@id/headline"/>
+
+            <TextView
+                android:id="@+id/youtubeTitleTextView"
+                android:layout_width="306dp"
+                android:layout_height="42dp"
+                android:layout_marginEnd="11dp"
+                android:text="youtube text"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="@+id/youtube_back"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.465"
+                app:layout_constraintStart_toStartOf="@+id/youtube_back"
+                app:layout_constraintTop_toTopOf="@+id/youtube_back"
+                app:layout_constraintVertical_bias="0.918" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/my_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/newsUpdateTextView"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="10dp"
+        android:layout_alignTop="@+id/card_view"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginRight="20dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -34,7 +153,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/my_recycler_view"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="18dp"
         android:text="Trending News"
         android:textColor="@color/white"
         android:textSize="24sp" />
@@ -51,5 +170,3 @@
         tools:listitem="@layout/row_second_news" />
 
 </RelativeLayout>
-
-

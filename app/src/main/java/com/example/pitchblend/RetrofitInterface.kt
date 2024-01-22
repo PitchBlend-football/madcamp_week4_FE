@@ -3,28 +3,16 @@ package com.example.pitchblend
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
-import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
-import okhttp3.RequestBody
-import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.Multipart
-import retrofit2.http.PATCH
-import retrofit2.http.POST
-import retrofit2.http.Part
+import retrofit2.http.Header
 import retrofit2.http.Path
 import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
-import java.util.UUID
 
 interface RetrofitInterface {
 
@@ -34,6 +22,7 @@ interface RetrofitInterface {
 
     @GET("info/get_predictions/{matchId}/")
     fun getMatchPredictions(@Path("matchId") matchId: Int): Call<JsonObject>
+
 
     @GET("info/get_standings/")
     fun getStandings(): Call<StandingsResponse>
@@ -49,6 +38,11 @@ interface RetrofitInterface {
 
     @GET("info/fixture_statistics/{matchId}/")
     fun getMatchResult(@Path("matchId") matchId: Int): Call<MatchResultResponse>
+
+    @GET("news/user_team_info/")
+    fun getTeamInfo(@Header("authorization") authorization: String): Call<TeamInfo>
+
+
 
 
 
