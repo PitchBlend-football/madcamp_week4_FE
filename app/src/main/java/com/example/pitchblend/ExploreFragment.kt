@@ -4,6 +4,8 @@ package com.example.pitchblend
 
 import android.content.ContentValues
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +16,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.marginEnd
@@ -33,6 +36,7 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 
+// ExploreFragment.kt
 class ExploreFragment : Fragment() {
 
     private lateinit var mRecyclerView: RecyclerView
@@ -208,6 +212,19 @@ class ExploreFragment : Fragment() {
                         }
 
                         titleTextView?.text = jData.optJSONObject("snippet")?.optString("title")
+
+                        // 클릭 시 유튜브 비디오를 재생하기 위한 Intent 생성
+                        titleTextView?.setOnClickListener {
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=$videoId"))
+
+                            // Intent를 처리할 수 있는 액티비티가 있는지 확인 후 실행
+                            if (intent.resolveActivity(requireContext().packageManager) != null) {
+                                startActivity(intent)
+                            } else {
+                                // 유튜브 앱이나 웹 페이지가 없는 경우 사용자에게 메시지 표시
+                                Toast.makeText(requireContext(), "YouTube app not installed", Toast.LENGTH_SHORT).show()
+                            }
+                        }
                     } else {
                         // 검색 결과가 없을 경우 처리
                         val thumbnailImageView: ImageView? = view?.findViewById(R.id.youtubeThumbnailImageView)
