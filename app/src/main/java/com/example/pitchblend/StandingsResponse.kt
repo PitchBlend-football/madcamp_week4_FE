@@ -27,7 +27,7 @@ data class LeagueData(
 
 data class Team(
     val rank: Int,
-    val team: TeamInfo,
+    val team: StandingsTeam,
     val points: Int,
     val goalsDiff: Int,
     val group: String,
@@ -40,7 +40,7 @@ data class Team(
     val update: String
 )
 
-data class TeamInfo(
+data class StandingsTeam(
     val id: Int,
     val name: String,
     val logo: String
