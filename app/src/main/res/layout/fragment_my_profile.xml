@@ -31,6 +31,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/profile_img"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:src="@drawable/profile_ex"/>
@@ -47,7 +48,7 @@
                         android:id="@+id/nickname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="쿼카"
+                        android:text="로그인 해주세요 !"
                         android:textColor="@color/white"
                         android:textSize="20sp"/>
 
@@ -55,7 +56,7 @@
                         android:id="@+id/email_txt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="a@n1.com"
+                        android:text=""
                         android:textColor="@color/white"
                         android:textSize="12sp"/>
 
@@ -67,6 +68,7 @@
                     android:layout_weight="1"/>
 
                 <Button
+                    android:id="@+id/logoutButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|end"
@@ -112,7 +114,7 @@
                         android:id="@+id/teamLogo"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/tottenham_logo"/>
+                        />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -125,7 +127,7 @@
                             android:id="@+id/teamName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TOTTENHAM HOTSPUR"
+                            android:text=""
                             android:textColor="@color/white"
                             android:textSize="16sp"/>
 
