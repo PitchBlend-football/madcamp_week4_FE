@@ -52,16 +52,10 @@ class LoginActivity : AppCompatActivity() {
                     saveAccessToken(accessToken)
                     Log.d("LoginActivity", "Login success. Access Token: $accessToken")
 
-                    // 로그인 성공 후 HomeFragment로 전환
-                    val fragmentTransaction = supportFragmentManager.beginTransaction()
-                    val homeFragment = HomeFragment()
-
-                    // (Optional) 전환 애니메이션을 설정하려면 아래 주석 해제
-                    // fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
-
-                    fragmentTransaction.replace(R.id.bottom_sheet, homeFragment)
-                    fragmentTransaction.addToBackStack(null)  // 백 스택에 추가하려면 주석 해제
-                    fragmentTransaction.commit()
+                    // 로그인 성공 후 MainActivity로 이동
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP))
+                    finish()  // 현재 화면을 종료하여 뒤로 가기 시 로그인 화면이 나오지 않도록 함
                 } catch (e: Exception) {
                     e.printStackTrace()
                     Log.e("LoginActivity", "Login failed. Exception: ${e.message}")
@@ -76,6 +70,8 @@ class LoginActivity : AppCompatActivity() {
         // Volley 큐에 요청을 추가
         Volley.newRequestQueue(this).add(request)
     }
+
+
 
     private fun saveAccessToken(accessToken: String) {
         // 예시 (SharedPreferences 사용):
