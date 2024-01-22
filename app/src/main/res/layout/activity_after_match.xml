@@ -71,7 +71,7 @@
                     android:layout_height="60dp"
                     android:src="@drawable/arsenal_logo"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/match_start_time"
+                    app:layout_constraintEnd_toStartOf="@+id/match_score"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -82,19 +82,40 @@
                     android:src="@drawable/tottenham_logo"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/match_start_time"
+                    app:layout_constraintStart_toEndOf="@+id/match_score"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/match_start_time"
+                <LinearLayout
+                    android:id="@+id/match_score"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2 - 2"
-                    android:textColor="@color/white"
-                    android:textSize="40sp"
+                    android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/match_home_goals"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2"
+                        android:textColor="@color/white"
+                        android:textSize="40sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" - "
+                        android:textColor="@color/white"
+                        android:textSize="40sp" />
+                    <TextView
+                        android:id="@+id/match_away_goals"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2"
+                        android:textColor="@color/white"
+                        android:textSize="40sp" />
+
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/match_start_date"
@@ -106,7 +127,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/match_start_time" />
+                    app:layout_constraintTop_toBottomOf="@+id/match_score" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -116,7 +137,7 @@
 
                 <ImageView
                     android:id="@+id/soccer_ball"
-                    android:layout_width="30dp"
+                    android:layout_width="60dp"
                     android:layout_height="30dp"
                     android:src="@drawable/soccer_ball"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -249,7 +270,7 @@
                     android:id="@+id/attacks_title"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="Attacks"
+                    android:text="Shots on Target"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="20sp"
@@ -334,6 +355,138 @@
                 android:layout_marginTop="15dp">
 
                 <TextView
+                    android:id="@+id/offside_title"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Offside"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/offside_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/offside_title"
+                    app:layout_constraintEnd_toStartOf="@+id/offside_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/offside_title" />
+
+                <TextView
+                    android:id="@+id/offside_away"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/offside_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/offside_title"
+                    app:layout_constraintTop_toTopOf="@+id/offside_title" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:id="@+id/total_passes_title"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Total Passes"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/total_passes_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/total_passes_title"
+                    app:layout_constraintEnd_toStartOf="@+id/total_passes_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/total_passes_title" />
+
+                <TextView
+                    android:id="@+id/total_passes_away"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/total_passes_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/total_passes_title"
+                    app:layout_constraintTop_toTopOf="@+id/total_passes_title" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:id="@+id/passes_percent_title"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Passes Accuracy"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/passes_percent_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/passes_percent_title"
+                    app:layout_constraintEnd_toStartOf="@+id/passes_percent_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/passes_percent_title" />
+
+                <TextView
+                    android:id="@+id/passes_percent_away"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/passes_percent_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/passes_percent_title"
+                    app:layout_constraintTop_toTopOf="@+id/passes_percent_title" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+                <TextView
                     android:id="@+id/possession_title"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
@@ -398,6 +551,50 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/possession_graph_away"
                     app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:id="@+id/fouls_title"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Fouls"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/fouls_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/fouls_title"
+                    app:layout_constraintEnd_toStartOf="@+id/fouls_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/fouls_title" />
+
+                <TextView
+                    android:id="@+id/fouls_away"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/fouls_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/fouls_title"
+                    app:layout_constraintTop_toTopOf="@+id/fouls_title" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

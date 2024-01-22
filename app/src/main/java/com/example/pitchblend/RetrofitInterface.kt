@@ -35,6 +35,21 @@ interface RetrofitInterface {
     @GET("info/get_predictions/{matchId}/")
     fun getMatchPredictions(@Path("matchId") matchId: Int): Call<JsonObject>
 
+    @GET("info/get_standings/")
+    fun getStandings(): Call<StandingsResponse>
+
+    @GET("info/get_match/")
+    fun getMatchSchedule(): Call<MatchScheduleResponse>
+
+    @GET("info/get_allmatches/")
+    fun getLastMatches(): Call<MatchScheduleResponse>
+
+    @GET("info/get_events/{matchId}/")
+    fun getScorers(@Path("matchId") matchId: Int): Call<ScorersResponse>
+
+    @GET("info/fixture_statistics/{matchId}/")
+    fun getMatchResult(@Path("matchId") matchId: Int): Call<MatchResultResponse>
+
 
 
 //    예시들
