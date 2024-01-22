@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
@@ -39,11 +40,13 @@ class ExploreFragment : Fragment() {
     private lateinit var mLayoutManager: RecyclerView.LayoutManager
     private lateinit var queue: RequestQueue
     private lateinit var toggleLayout: LinearLayout
+    private var aiTitleTextView: TextView? = null
 
     private lateinit var secondRecyclerView: RecyclerView
     private lateinit var secondAdapter: RecyclerView.Adapter<*>
     private lateinit var secondLayoutManager: RecyclerView.LayoutManager
-    private lateinit var accessTokenManager: AccessTokenManager
+    private lateinit var teamName: String
+
 
     private lateinit var accessToken: String
 
@@ -55,7 +58,6 @@ class ExploreFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_explore, container, false)
-        accessTokenManager = AccessTokenManager(requireContext())
 
         val sharedPref= requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         accessToken = sharedPref.getString("accessToken", "")!!
@@ -84,7 +86,6 @@ class ExploreFragment : Fragment() {
     }
 
     private fun getTeamInfo() {
-        //val accessToken = accessTokenManager.getAccessToken()
         Log.e("getTeamInfo", "실행되냐")
         if (accessToken != null) {
             Log.e("getTeamInfo", "accesstoken이 null이냐")
@@ -97,7 +98,11 @@ class ExploreFragment : Fragment() {
                         val teamInfo = response.body()
                         Log.d("TeamInfo", "${teamInfo}")// 이 부분이 호출되어야 UI가 업데이트됨
                         if (teamInfo != null) {
+                            teamName = teamInfo.teamName
                             updateUI(teamInfo)
+                            val searchQuery = "$teamName man latest interview with couch"
+                            searchYoutube(searchQuery)
+                            Log.e("youtubeSearch", searchQuery)
                         } else {
                             // 팀 정보가 null인 경우 처리
                             Log.e(ContentValues.TAG, "null이냐")
@@ -114,8 +119,7 @@ class ExploreFragment : Fragment() {
                 }
             })
         } else {
-            // Access Token이 없는 경우 로그인 화면으로 이동 또는 다른 처리를 수행
-            // ...
+
         }
     }
 
@@ -172,6 +176,53 @@ class ExploreFragment : Fragment() {
             toggleCardView.layoutParams = params
         }
     }
+
+    private fun searchYoutube(query: String) {
+        // YouTube API 호출 URL 설정
+        val searchURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyDGnaQkcHDw8-7QVzKs5VtCXIbkI8JFIZ8"
+        val keyword = "&q=" + query
+        val maxResultsParam = "&maxResults=1"  // 여기를 1로 수정하여 하나의 비디오만 가져오도록 함
+        val youtubeSearchURL = searchURL + keyword + maxResultsParam
+
+        // 네트워크 통신을 위한 객체 생성
+        val requestQueue = Volley.newRequestQueue(requireContext())
+        val jsonObjectRequest = JsonObjectRequest(Request.Method.GET, youtubeSearchURL, null,
+            { response ->
+                // API 호출 결과 실행
+                try {
+                    val jArr = response.getJSONArray("items")
+
+                    if (jArr.length() > 0) {
+                        val jData = jArr.optJSONObject(0)
+                        val jid = jData.optJSONObject("id")
+                        val videoId = jid.optString("videoId")
+
+                        // 썸네일 이미지 및 제목을 해당 뷰에 설정
+                        val thumbnailImageView: ImageView? = view?.findViewById(R.id.youtubeThumbnailImageView)
+                        val titleTextView: TextView? = view?.findViewById(R.id.youtubeTitleTextView)
+
+                        thumbnailImageView?.let {
+                            Glide.with(requireContext())
+                                .load("https://i.ytimg.com/vi/$videoId/hqdefault.jpg") // 썸네일 이미지 URL
+                                .into(it)
+                        }
+
+                        titleTextView?.text = jData.optJSONObject("snippet")?.optString("title")
+                    } else {
+                        // 검색 결과가 없을 경우 처리
+                        val thumbnailImageView: ImageView? = view?.findViewById(R.id.youtubeThumbnailImageView)
+                        val titleTextView: TextView? = view?.findViewById(R.id.youtubeTitleTextView)
+
+                        titleTextView?.text = "No videos found on YouTube"
+                    }
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+            },
+            { error -> Log.i("onErrorResponse", "" + error) })
+
+        requestQueue.add(jsonObjectRequest)
+    }
     private fun getSecondNews() {
         val url = "https://newsapi.org/v2/everything?q=epl&language=en&apiKey=913a13e56be549f29ab1a4887d74b80c"
 
@@ -215,7 +266,7 @@ class ExploreFragment : Fragment() {
                 }
             },
             Response.ErrorListener { error ->
-                // Handle error
+                Log.e("VOLLEY_ERROR", "Volley error: $error")
             }) {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
@@ -264,7 +315,7 @@ class ExploreFragment : Fragment() {
                 }
             },
             Response.ErrorListener { error ->
-
+                Log.e("VOLLEY_ERROR", "Volley error: $error")
             }) {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
