@@ -502,14 +502,20 @@ class DetailMatchActivity : AppCompatActivity() {
             image_card_home.setImageResource(R.drawable.chris_wood)
             top_scorers_home.text = "8 Goals"
             image_card_away.setImageResource(R.drawable.bukayo_saka_card)
-            top_scorers_home.text = "6 Goals"
+            top_scorers_away.text = "6 Goals"
             expected_linup_pic.setImageResource(R.drawable.nfo_ars)
         } else if (intent.getStringExtra("matchTeams") == "Luton VS Brighton") {
-            image_card_home.setImageResource(R.drawable.chris_wood)
-            top_scorers_home.text = "8 Goals"
-            image_card_away.setImageResource(R.drawable.bukayo_saka_card)
-            top_scorers_home.text = "6 Goals"
-            expected_linup_pic.setImageResource(R.drawable.nfo_ars)
+            image_card_home.setImageResource(R.drawable.adebayo_card)
+            top_scorers_home.text = "5 Goals"
+            image_card_away.setImageResource(R.drawable.pedro_card)
+            top_scorers_away.text = "7 Goals"
+            expected_linup_pic.setImageResource(R.drawable.lut_bha)
+        } else if (intent.getStringExtra("matchTeams") == "Fulham VS Everton") {
+            image_card_home.setImageResource(R.drawable.jimenez_card)
+            top_scorers_home.text = "5 Goals"
+            image_card_away.setImageResource(R.drawable.doucoure_card)
+            top_scorers_away.text = "6 Goals"
+            expected_linup_pic.setImageResource(R.drawable.ful_eve)
         }
     }
 

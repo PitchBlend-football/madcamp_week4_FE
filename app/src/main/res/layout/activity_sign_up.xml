@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingHorizontal="30dp"
+            android:paddingHorizontal="20dp"
             android:paddingTop="30dp">
 
             <TextView
@@ -282,7 +282,7 @@
                     android:id="@+id/chelsea_btn"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="6dp"
                     android:background="@android:color/transparent"
                     android:scaleType="centerInside"
                     android:src="@drawable/choose_chelsea" />
@@ -291,7 +291,7 @@
                     android:id="@+id/arsenal_btn"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="6dp"
                     android:background="@android:color/transparent"
                     android:scaleType="centerInside"
                     android:src="@drawable/choose_arsenal" />
@@ -316,7 +316,7 @@
                     android:id="@+id/liverpool_btn"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="6dp"
                     android:background="@android:color/transparent"
                     android:scaleType="centerInside"
                     android:src="@drawable/choose_liverpool" />
@@ -325,7 +325,7 @@
                     android:id="@+id/tottenham_btn"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="6dp"
                     android:background="@android:color/transparent"
                     android:scaleType="centerInside"
                     android:src="@drawable/choose_tottenham" />
