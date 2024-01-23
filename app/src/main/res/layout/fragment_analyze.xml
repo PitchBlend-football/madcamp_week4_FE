@@ -12,12 +12,15 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp">
 
             <TextView
                 android:id="@+id/title"
@@ -68,6 +71,18 @@
 
 
             <ImageView
+                android:id="@+id/box2"
+                android:layout_width="376dp"
+                android:layout_height="83dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/background_ft"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.428"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/videoView" />
+
+
+            <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="35dp"
@@ -103,34 +118,60 @@
 
             <VideoView
                 android:id="@+id/videoView"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_centerInParent="true"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
-                android:layout_marginStart="15dp"
                 android:layout_marginTop="100dp"
                 android:src="@raw/playchelman"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/detail" />
 
             <ImageButton
                 android:id="@+id/playPauseButton"
-                android:src="@drawable/playbtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
                 android:background="@android:color/transparent"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:src="@drawable/playbtn"
+                app:layout_constraintBottom_toBottomOf="@+id/videoView"
                 app:layout_constraintEnd_toEndOf="@+id/videoView"
+                app:layout_constraintHorizontal_bias="0.496"
                 app:layout_constraintStart_toStartOf="@+id/videoView"
                 app:layout_constraintTop_toTopOf="@+id/videoView"
-                app:layout_constraintVertical_bias="0.425" />
+                app:layout_constraintVertical_bias="0.55" />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="28dp"
+                android:src="@drawable/manchestercity"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/videoView" />
+
+            <ImageView
+                android:id="@+id/score2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="31dp"
+                android:src="@drawable/chelman"
+                app:layout_constraintEnd_toEndOf="@+id/box"
+                app:layout_constraintStart_toStartOf="@+id/box"
+                app:layout_constraintTop_toBottomOf="@id/videoView" />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="35dp"
+                android:src="@drawable/chelsea"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/videoView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
