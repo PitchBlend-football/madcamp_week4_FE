@@ -49,6 +49,9 @@ class ExploreFragment : Fragment() {
     private lateinit var secondRecyclerView: RecyclerView
     private lateinit var secondAdapter: RecyclerView.Adapter<*>
     private lateinit var secondLayoutManager: RecyclerView.LayoutManager
+    private lateinit var thirdRecyclerView: RecyclerView
+    private lateinit var thirdAdapter: RecyclerView.Adapter<*>
+    private lateinit var thirdLayoutManager: RecyclerView.LayoutManager
     private lateinit var teamName: String
 
 
@@ -79,20 +82,28 @@ class ExploreFragment : Fragment() {
         secondRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
+        thirdRecyclerView = view.findViewById(R.id.third_recycler_view)
+        thirdRecyclerView.setHasFixedSize(true)
+        thirdLayoutManager = LinearLayoutManager(requireContext())
+        thirdRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
         queue = Volley.newRequestQueue(requireContext())
         getNews()
         getSecondNews()
+
 
         setupToggleAnimation(view)
         getTeamInfo()
 
         return view
+
     }
 
     private fun getTeamInfo() {
-        Log.e("getTeamInfo", "실행되냐")
+        Log.e("getTeamInfo", "실행되니")
         if (accessToken != null) {
-            Log.e("getTeamInfo", "accesstoken이 null이냐")
+            Log.e("getTeamInfo", "accesstoken이 null?")
             api.getTeamInfo("Bearer $accessToken").enqueue(object : Callback<TeamInfo> {
                 override fun onResponse(
                     call: Call<TeamInfo>,
@@ -107,6 +118,7 @@ class ExploreFragment : Fragment() {
                             val searchQuery = "$teamName man latest interview with couch"
                             searchYoutube(searchQuery)
                             Log.e("youtubeSearch", searchQuery)
+                            getThirdNews(teamInfo)
                         } else {
                             // 팀 정보가 null인 경우 처리
                             Log.e(ContentValues.TAG, "null이냐")
@@ -337,7 +349,64 @@ class ExploreFragment : Fragment() {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
                 headers["User-Agent"] = "Mozilla/5.0"
-                // 필요한 경우 다른 헤더도 추가 가능
+                return headers
+            }
+        }
+
+        queue.add(stringRequest)
+    }
+
+    private fun getThirdNews(teamInfo: TeamInfo) {
+        val teamName = teamInfo.teamName
+        val url = "https://newsapi.org/v2/everything?" + "q=${teamName}" +
+                "&language=en" +
+                "&apiKey=913a13e56be549f29ab1a4887d74b80c"
+
+        val stringRequest = object : StringRequest(
+            Request.Method.GET,
+            url,
+            Response.Listener<String> { response ->
+                Log.d("THIRD_NEWS", response)
+
+                try {
+                    val jsonObj = JSONObject(response)
+                    val arrayArticles = jsonObj.getJSONArray("articles")
+
+                    val news = ArrayList<NewsData>()
+
+                    for (i in 0 until arrayArticles.length()) {
+                        val obj = arrayArticles.getJSONObject(i)
+
+                        Log.d("THIRD_NEWS", obj.toString())
+
+                        // urlToImage가 null 또는 빈 문자열이면 해당 뉴스를 건너뜁니다.
+                        val imageUrl = obj.getString("urlToImage")
+                        if (imageUrl.isNullOrBlank()) {
+                            continue
+                        }
+
+                        val newsData = NewsData().apply {
+                            title = obj.getString("title")
+                            urlToImage = imageUrl
+                        }
+
+                        newsData.url = obj.getString("url")
+                        news.add(newsData)
+                    }
+
+                    thirdAdapter = MyThirdAdapter(news, requireContext())
+                    thirdRecyclerView.adapter = thirdAdapter
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+            },
+            Response.ErrorListener { error ->
+                Log.e("VOLLEY_ERROR", "Volley error: $error")
+            }) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["User-Agent"] = "Mozilla/5.0"
                 return headers
             }
         }
