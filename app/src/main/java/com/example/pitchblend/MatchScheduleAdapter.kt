@@ -42,6 +42,8 @@ class MatchScheduleAdapter (private var matchScheduleList: ArrayList<Schedule>) 
             intent.putExtra("matchAwayLogo", matchScheduleList[position].teams.away.logo)
             intent.putExtra("matchDate", formattedDate)
             intent.putExtra("matchTime", formattedTime)
+            intent.putExtra("matchHomeId", matchScheduleList[position].teams.home.id)
+            intent.putExtra("matchAwayId", matchScheduleList[position].teams.away.id)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             holder.itemView.context.startActivity(intent)
         }

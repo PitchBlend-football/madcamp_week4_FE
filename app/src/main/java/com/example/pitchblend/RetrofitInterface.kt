@@ -4,12 +4,13 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
 import okhttp3.OkHttpClient
-import okhttp3.RequestBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
+
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
@@ -44,6 +45,20 @@ interface RetrofitInterface {
 
     @GET("news/user_team_info/")
     fun getTeamInfo(@Header("authorization") authorization: String): Call<TeamInfo>
+
+    @GET("info/get_players/")
+    fun getTopScorer(@Query("team") team: Int): Call<TopScorersResponse>
+
+    @FormUrlEncoded
+    @POST("accounts/register/")
+    fun postSignUp(
+        @Field("username") username: String,
+        @Field("phone_number") phonenumber: String,
+        @Field("password") password: String,
+        @Field("email") email: String,
+        @Field("nickname") nickname: String,
+        @Field("selected_team") selectedteam: Int
+    ) : Call<JsonObject>
 
 
 

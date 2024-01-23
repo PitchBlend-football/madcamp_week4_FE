@@ -192,6 +192,7 @@ class ExploreFragment : Fragment() {
         }
     }
 
+
     /*private fun searchYoutube(query: String) {
         // YouTube API 호출 URL 설정
         val searchURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyDk0muXlsKIlY5vCBd35KvCOZlx9HDyw8M"
@@ -250,8 +251,6 @@ class ExploreFragment : Fragment() {
             { error -> Log.i("onErrorResponse", "" + error) })
 
         requestQueue.add(jsonObjectRequest)
-    }
-
      */
 
 

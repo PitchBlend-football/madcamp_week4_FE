@@ -80,4 +80,10 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.2.1")
     implementation ("com.facebook.fresco:fresco:2.5.0")
     implementation("com.squareup.picasso:picasso:2.8")
+
+    // HTML 가져오기
+    implementation("org.jsoup:jsoup:1.14.3")
+
+    // 유튜브 api 없이
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0")
 }

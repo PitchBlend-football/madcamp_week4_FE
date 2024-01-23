@@ -9,29 +9,33 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="vertical"
             android:paddingHorizontal="30dp"
-            android:paddingTop="30dp"
-            android:orientation="vertical">
+            android:paddingTop="30dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Sign Up"
-                android:textSize="36sp"
-                android:textColor="@color/white"/>
-            
+                android:textColor="@color/white"
+                android:textSize="36sp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:text="Enter Your Name"
                 android:textColor="#65656B"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -56,7 +60,7 @@
 
                     <EditText
                         android:id="@+id/sign_up_name"
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:background="@android:color/transparent"
@@ -78,7 +82,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Enter Your Nickname"
                 android:textColor="#65656B"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -103,7 +107,7 @@
 
                     <EditText
                         android:id="@+id/sign_up_nickname"
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:background="@android:color/transparent"
@@ -125,7 +129,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Enter Your Email"
                 android:textColor="#65656B"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -150,7 +154,7 @@
 
                     <EditText
                         android:id="@+id/sign_up_email"
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:background="@android:color/transparent"
@@ -172,7 +176,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Enter Your Password"
                 android:textColor="#65656B"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -197,7 +201,7 @@
 
                     <EditText
                         android:id="@+id/sign_up_password"
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:background="@android:color/transparent"
@@ -219,7 +223,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Enter Your Phone Number"
                 android:textColor="#65656B"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -244,7 +248,7 @@
 
                     <EditText
                         android:id="@+id/sign_up_phone"
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:background="@android:color/transparent"
@@ -266,7 +270,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Choose Your Support Team"
                 android:textColor="#65656B"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -278,25 +282,27 @@
                     android:id="@+id/chelsea_btn"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:background="@android:color/transparent"
                     android:layout_marginEnd="10dp"
-                    android:src="@drawable/choose_chelsea"
-                    android:scaleType="centerInside"/>
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/choose_chelsea" />
+
                 <ImageButton
                     android:id="@+id/arsenal_btn"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:background="@android:color/transparent"
                     android:layout_marginEnd="10dp"
-                    android:src="@drawable/choose_arsenal"
-                    android:scaleType="centerInside"/>
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/choose_arsenal" />
+
                 <ImageButton
                     android:id="@+id/mancity_btn"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/choose_mancity"
-                    android:scaleType="centerInside"/>
+                    android:scaleType="centerInside"
+                    android:src="@drawable/choose_mancity" />
 
             </LinearLayout>
 
@@ -310,25 +316,27 @@
                     android:id="@+id/liverpool_btn"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:background="@android:color/transparent"
                     android:layout_marginEnd="10dp"
-                    android:src="@drawable/choose_liverpool"
-                    android:scaleType="centerInside"/>
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/choose_liverpool" />
+
                 <ImageButton
                     android:id="@+id/tottenham_btn"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:background="@android:color/transparent"
                     android:layout_marginEnd="10dp"
-                    android:src="@drawable/choose_tottenham"
-                    android:scaleType="centerInside"/>
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/choose_tottenham" />
+
                 <ImageButton
                     android:id="@+id/manutd_btn"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/choose_manutd"
-                    android:scaleType="centerInside"/>
+                    android:scaleType="centerInside"
+                    android:src="@drawable/choose_manutd" />
 
             </LinearLayout>
 
@@ -336,15 +344,15 @@
                 android:id="@+id/complete_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="30dp"
-                android:layout_gravity="center"
-                android:minHeight="0dp"
-                android:minWidth="0dp"
                 android:background="@android:color/transparent"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
                 android:text="Complete"
                 android:textColor="@color/white"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
 
         </LinearLayout>
