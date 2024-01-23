@@ -82,7 +82,7 @@
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_marginStart="30dp"
-                            android:src="@drawable/manchestercity" />
+                            android:src="@drawable/chelsea" />
 
                         <View
                             android:layout_width="0dp"
@@ -98,7 +98,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="0 - 1"
+                                android:text="1 - 0"
                                 android:textColor="@color/white"
                                 android:textSize="40sp" />
 
@@ -120,7 +120,7 @@
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_marginEnd="30dp"
-                            android:src="@drawable/chelsea" />
+                            android:src="@drawable/manchestercity" />
 
                     </LinearLayout>
 
@@ -129,7 +129,7 @@
                 <VideoView
                     android:id="@+id/videoView"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="220dp"
                     android:layout_centerInParent="true"
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center"
@@ -138,6 +138,17 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+                <ImageView
+                    android:id="@+id/che_man_thumbnail"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/analyze_man_che_image"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView"/>
 
                 <ImageButton
                     android:id="@+id/fullscreen_button"

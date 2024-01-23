@@ -60,6 +60,9 @@ interface RetrofitInterface {
         @Field("selected_team") selectedteam: Int
     ) : Call<JsonObject>
 
+    @GET("stadium/")
+    fun getStadiumInfo(@Header("authorization") authorization: String): Call<JsonObject>
+
 
 
 
