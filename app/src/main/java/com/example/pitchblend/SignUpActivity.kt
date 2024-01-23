@@ -41,27 +41,63 @@ class SignUpActivity : AppCompatActivity() {
 
         binding.liverpoolBtn.setOnClickListener {
             selectedTeam = 1
+            binding.liverpoolBtn.setImageResource(R.drawable.liverpool_click)
+            binding.mancityBtn.setImageResource(R.drawable.choose_mancity)
+            binding.arsenalBtn.setImageResource(R.drawable.choose_arsenal)
+            binding.tottenhamBtn.setImageResource(R.drawable.choose_tottenham)
+            binding.manutdBtn.setImageResource(R.drawable.choose_manutd)
+            binding.chelseaBtn.setImageResource(R.drawable.choose_chelsea)
             //complete(selectedTeam)
         }
         binding.mancityBtn.setOnClickListener {
             selectedTeam = 2
             Log.e("mancity", "mancity")
+            binding.liverpoolBtn.setImageResource(R.drawable.choose_liverpool)
+            binding.mancityBtn.setImageResource(R.drawable.mancity_click)
+            binding.arsenalBtn.setImageResource(R.drawable.choose_arsenal)
+            binding.tottenhamBtn.setImageResource(R.drawable.choose_tottenham)
+            binding.manutdBtn.setImageResource(R.drawable.choose_manutd)
+            binding.chelseaBtn.setImageResource(R.drawable.choose_chelsea)
             //complete(selectedTeam)
         }
         binding.arsenalBtn.setOnClickListener {
             selectedTeam = 4
+            binding.liverpoolBtn.setImageResource(R.drawable.choose_liverpool)
+            binding.mancityBtn.setImageResource(R.drawable.choose_mancity)
+            binding.arsenalBtn.setImageResource(R.drawable.arsenal_click)
+            binding.tottenhamBtn.setImageResource(R.drawable.choose_tottenham)
+            binding.manutdBtn.setImageResource(R.drawable.choose_manutd)
+            binding.chelseaBtn.setImageResource(R.drawable.choose_chelsea)
             //complete(selectedTeam)
         }
         binding.tottenhamBtn.setOnClickListener {
             selectedTeam = 5
+            binding.liverpoolBtn.setImageResource(R.drawable.choose_liverpool)
+            binding.mancityBtn.setImageResource(R.drawable.choose_mancity)
+            binding.arsenalBtn.setImageResource(R.drawable.choose_arsenal)
+            binding.tottenhamBtn.setImageResource(R.drawable.tottenham_click)
+            binding.manutdBtn.setImageResource(R.drawable.choose_manutd)
+            binding.chelseaBtn.setImageResource(R.drawable.choose_chelsea)
             //complete(selectedTeam)
         }
         binding.manutdBtn.setOnClickListener {
             selectedTeam = 7
+            binding.liverpoolBtn.setImageResource(R.drawable.choose_liverpool)
+            binding.mancityBtn.setImageResource(R.drawable.choose_mancity)
+            binding.arsenalBtn.setImageResource(R.drawable.choose_arsenal)
+            binding.tottenhamBtn.setImageResource(R.drawable.choose_tottenham)
+            binding.manutdBtn.setImageResource(R.drawable.manutd_click)
+            binding.chelseaBtn.setImageResource(R.drawable.choose_chelsea)
             //complete(selectedTeam)
         }
         binding.chelseaBtn.setOnClickListener {
             selectedTeam = 8
+            binding.liverpoolBtn.setImageResource(R.drawable.choose_liverpool)
+            binding.mancityBtn.setImageResource(R.drawable.choose_mancity)
+            binding.arsenalBtn.setImageResource(R.drawable.choose_arsenal)
+            binding.tottenhamBtn.setImageResource(R.drawable.choose_tottenham)
+            binding.manutdBtn.setImageResource(R.drawable.choose_manutd)
+            binding.chelseaBtn.setImageResource(R.drawable.chelsea_click)
             Log.e("chelsea", "chelsea")
             //complete(selectedTeam)
         }

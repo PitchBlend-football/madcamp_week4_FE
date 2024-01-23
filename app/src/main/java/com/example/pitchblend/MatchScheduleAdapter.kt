@@ -40,8 +40,11 @@ class MatchScheduleAdapter (private var matchScheduleList: ArrayList<Schedule>) 
             intent.putExtra("matchTeams", "${matchScheduleList[position].teams.home.name} VS ${matchScheduleList[position].teams.away.name}")
             intent.putExtra("matchHomeLogo", matchScheduleList[position].teams.home.logo)
             intent.putExtra("matchAwayLogo", matchScheduleList[position].teams.away.logo)
-            intent.putExtra("matchDate", formattedDate)
-            intent.putExtra("matchTime", formattedTime)
+//            이렇게 하니까 time이 모두 동일하게 19:30으로 들어간다... date도 마찬가지겠지.. 나중에 큰일날 뻔
+//            intent.putExtra("matchDate", formattedDate)
+//            intent.putExtra("matchTime", formattedTime)
+            intent.putExtra("matchDate", holder.matchDate.text)
+            intent.putExtra("matchTime", holder.matchTime.text)
             intent.putExtra("matchHomeId", matchScheduleList[position].teams.home.id)
             intent.putExtra("matchAwayId", matchScheduleList[position].teams.away.id)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
