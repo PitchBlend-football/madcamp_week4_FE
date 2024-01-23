@@ -64,7 +64,7 @@ class ExploreFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_explore, container, false)
 
-        val sharedPref= requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val sharedPref = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         accessToken = sharedPref.getString("accessToken", "")!!
         Log.e("accessToken", "accessToken: $accessToken")
 
@@ -154,7 +154,10 @@ class ExploreFragment : Fragment() {
         }
 
         // 추가: 로그로 확인
-        Log.d("ExploreFragment", "UI Updated - Title: ${teamInfo.newsText}, Logo URL: ${teamInfo.logoUrl}")
+        Log.d(
+            "ExploreFragment",
+            "UI Updated - Title: ${teamInfo.newsText}, Logo URL: ${teamInfo.logoUrl}"
+        )
     }
 
     private fun setupToggleAnimation(rootView: View) {
@@ -195,7 +198,8 @@ class ExploreFragment : Fragment() {
 
     /*private fun searchYoutube(query: String) {
         // YouTube API 호출 URL 설정
-        val searchURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyDk0muXlsKIlY5vCBd35KvCOZlx9HDyw8M"
+        val searchURL =
+            "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyBTu38sxD0mdAGHpE37MN6lMzYUHgcX4Qc"
         val keyword = "&q=" + query
         val maxResultsParam = "&maxResults=1"  // 여기를 1로 수정하여 하나의 비디오만 가져오도록 함
         val youtubeSearchURL = searchURL + keyword + maxResultsParam
@@ -214,7 +218,8 @@ class ExploreFragment : Fragment() {
                         val videoId = jid.optString("videoId")
 
                         // 썸네일 이미지 및 제목을 해당 뷰에 설정
-                        val thumbnailImageView: ImageView? = view?.findViewById(R.id.youtubeThumbnailImageView)
+                        val thumbnailImageView: ImageView? =
+                            view?.findViewById(R.id.youtubeThumbnailImageView)
                         val titleTextView: TextView? = view?.findViewById(R.id.youtubeTitleTextView)
 
                         thumbnailImageView?.let {
@@ -227,19 +232,27 @@ class ExploreFragment : Fragment() {
 
                         // 클릭 시 유튜브 비디오를 재생하기 위한 Intent 생성
                         titleTextView?.setOnClickListener {
-                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=$videoId"))
+                            val intent = Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse("https://www.youtube.com/watch?v=$videoId")
+                            )
 
                             // Intent를 처리할 수 있는 액티비티가 있는지 확인 후 실행
                             if (intent.resolveActivity(requireContext().packageManager) != null) {
                                 startActivity(intent)
                             } else {
                                 // 유튜브 앱이나 웹 페이지가 없는 경우 사용자에게 메시지 표시
-                                Toast.makeText(requireContext(), "YouTube app not installed", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    requireContext(),
+                                    "YouTube app not installed",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
                     } else {
                         // 검색 결과가 없을 경우 처리
-                        val thumbnailImageView: ImageView? = view?.findViewById(R.id.youtubeThumbnailImageView)
+                        val thumbnailImageView: ImageView? =
+                            view?.findViewById(R.id.youtubeThumbnailImageView)
                         val titleTextView: TextView? = view?.findViewById(R.id.youtubeTitleTextView)
 
                         titleTextView?.text = "No videos found on YouTube"
@@ -251,172 +264,178 @@ class ExploreFragment : Fragment() {
             { error -> Log.i("onErrorResponse", "" + error) })
 
         requestQueue.add(jsonObjectRequest)
+    }
+
      */
 
 
-    private fun getSecondNews() {
-        val url = "https://newsapi.org/v2/everything?q=epl&language=en&apiKey=913a13e56be549f29ab1a4887d74b80c"
 
-        val stringRequest = object : StringRequest(
-            Request.Method.GET,
-            url,
-            Response.Listener<String> { response ->
-                Log.d("SECOND_NEWS", response)
+        private fun getSecondNews() {
+            val url =
+                "https://newsapi.org/v2/everything?q=epl&language=en&apiKey=913a13e56be549f29ab1a4887d74b80c"
 
-                try {
-                    val jsonObj = JSONObject(response)
-                    val arrayArticles = jsonObj.getJSONArray("articles")
+            val stringRequest = object : StringRequest(
+                Request.Method.GET,
+                url,
+                Response.Listener<String> { response ->
+                    Log.d("SECOND_NEWS", response)
 
-                    val news = ArrayList<NewsData>()
+                    try {
+                        val jsonObj = JSONObject(response)
+                        val arrayArticles = jsonObj.getJSONArray("articles")
 
-                    for (i in 0 until arrayArticles.length()) {
-                        val obj = arrayArticles.getJSONObject(i)
+                        val news = ArrayList<NewsData>()
 
-                        Log.d("SECOND_NEWS", obj.toString())
+                        for (i in 0 until arrayArticles.length()) {
+                            val obj = arrayArticles.getJSONObject(i)
 
-                        // urlToImage가 null 또는 빈 문자열이면 해당 뉴스를 건너뜁니다.
-                        val imageUrl = obj.getString("urlToImage")
-                        if (imageUrl.isNullOrBlank()) {
-                            continue
+                            Log.d("SECOND_NEWS", obj.toString())
+
+                            // urlToImage가 null 또는 빈 문자열이면 해당 뉴스를 건너뜁니다.
+                            val imageUrl = obj.getString("urlToImage")
+                            if (imageUrl.isNullOrBlank()) {
+                                continue
+                            }
+
+                            val newsData = NewsData().apply {
+                                title = obj.getString("title")
+                                urlToImage = imageUrl
+                            }
+
+                            newsData.url = obj.getString("url")
+                            news.add(newsData)
                         }
 
-                        val newsData = NewsData().apply {
-                            title = obj.getString("title")
-                            urlToImage = imageUrl
-                        }
+                        secondAdapter = MySecondAdapter(news, requireContext())
+                        secondRecyclerView.adapter = secondAdapter
 
-                        newsData.url = obj.getString("url")
-                        news.add(newsData)
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
                     }
-
-                    secondAdapter = MySecondAdapter(news, requireContext())
-                    secondRecyclerView.adapter = secondAdapter
-
-                } catch (e: JSONException) {
-                    e.printStackTrace()
+                },
+                Response.ErrorListener { error ->
+                    Log.e("VOLLEY_ERROR", "Volley error: $error")
+                }) {
+                override fun getHeaders(): MutableMap<String, String> {
+                    val headers = HashMap<String, String>()
+                    headers["User-Agent"] = "Mozilla/5.0"
+                    return headers
                 }
-            },
-            Response.ErrorListener { error ->
-                Log.e("VOLLEY_ERROR", "Volley error: $error")
-            }) {
-            override fun getHeaders(): MutableMap<String, String> {
-                val headers = HashMap<String, String>()
-                headers["User-Agent"] = "Mozilla/5.0"
-                return headers
             }
+
+            queue.add(stringRequest)
         }
 
-        queue.add(stringRequest)
-    }
+        private fun getNews() {
+            val url =
+                "https://newsapi.org/v2/everything?q=premier&language=en&apiKey=913a13e56be549f29ab1a4887d74b80c"
 
-    private fun getNews() {
-        val url = "https://newsapi.org/v2/everything?q=premierleague&language=en&apiKey=913a13e56be549f29ab1a4887d74b80c"
+            val stringRequest = object : StringRequest(
+                Request.Method.GET,
+                url,
+                Response.Listener<String> { response ->
+                    Log.d("NEWS", response)
 
-        val stringRequest = object : StringRequest(
-            Request.Method.GET,
-            url,
-            Response.Listener<String> { response ->
-                Log.d("NEWS", response)
+                    try {
+                        val jsonObj = JSONObject(response)
+                        val arrayArticles = jsonObj.getJSONArray("articles")
 
-                try {
-                    val jsonObj = JSONObject(response)
-                    val arrayArticles = jsonObj.getJSONArray("articles")
+                        val news = ArrayList<NewsData>()
 
-                    val news = ArrayList<NewsData>()
+                        for (i in 0 until arrayArticles.length()) {
+                            val obj = arrayArticles.getJSONObject(i)
 
-                    for (i in 0 until arrayArticles.length()) {
-                        val obj = arrayArticles.getJSONObject(i)
+                            Log.d("NEWS", obj.toString())
 
-                        Log.d("NEWS", obj.toString())
+                            val newsData = NewsData().apply {
+                                title = obj.getString("title")
+                                urlToImage = obj.getString("urlToImage")
+                            }
 
-                        val newsData = NewsData().apply {
-                            title = obj.getString("title")
-                            urlToImage = obj.getString("urlToImage")
+                            newsData.url = obj.getString("url")
+                            news.add(newsData)
                         }
 
-                        newsData.url = obj.getString("url")
-                        news.add(newsData)
+                        mAdapter = MyAdapter(news, requireContext())
+                        mRecyclerView.adapter = mAdapter
+
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
                     }
-
-                    mAdapter = MyAdapter(news, requireContext())
-                    mRecyclerView.adapter = mAdapter
-
-                } catch (e: JSONException) {
-                    e.printStackTrace()
+                },
+                Response.ErrorListener { error ->
+                    Log.e("VOLLEY_ERROR", "Volley error: $error")
+                }) {
+                override fun getHeaders(): MutableMap<String, String> {
+                    val headers = HashMap<String, String>()
+                    headers["User-Agent"] = "Mozilla/5.0"
+                    return headers
                 }
-            },
-            Response.ErrorListener { error ->
-                Log.e("VOLLEY_ERROR", "Volley error: $error")
-            }) {
-            override fun getHeaders(): MutableMap<String, String> {
-                val headers = HashMap<String, String>()
-                headers["User-Agent"] = "Mozilla/5.0"
-                return headers
             }
+
+            queue.add(stringRequest)
         }
 
-        queue.add(stringRequest)
-    }
+        private fun getThirdNews() {
+            // UserProfile 객체 가져오기
+            val userProfile = UserProfileManager.getUserProfile()
 
-    private fun getThirdNews() {
-        // UserProfile 객체 가져오기
-        val userProfile = UserProfileManager.getUserProfile()
+            // UserProfile 객체에서 teamName을 가져옴
+            val teamName = userProfile?.teamName
+            val url = "https://newsapi.org/v2/everything?" + "q=${teamName}" +
+                    "&language=en" +
+                    "&apiKey=913a13e56be549f29ab1a4887d74b80c"
 
-        // UserProfile 객체에서 teamName을 가져옴
-        val teamName = userProfile?.teamName
-        val url = "https://newsapi.org/v2/everything?" + "q=${teamName}" +
-                "&language=en" +
-                "&apiKey=913a13e56be549f29ab1a4887d74b80c"
+            val stringRequest = object : StringRequest(
+                Request.Method.GET,
+                url,
+                Response.Listener<String> { response ->
+                    Log.d("THIRD_NEWS", response)
 
-        val stringRequest = object : StringRequest(
-            Request.Method.GET,
-            url,
-            Response.Listener<String> { response ->
-                Log.d("THIRD_NEWS", response)
+                    try {
+                        val jsonObj = JSONObject(response)
+                        val arrayArticles = jsonObj.getJSONArray("articles")
 
-                try {
-                    val jsonObj = JSONObject(response)
-                    val arrayArticles = jsonObj.getJSONArray("articles")
+                        val news = ArrayList<NewsData>()
 
-                    val news = ArrayList<NewsData>()
+                        for (i in 0 until arrayArticles.length()) {
+                            val obj = arrayArticles.getJSONObject(i)
 
-                    for (i in 0 until arrayArticles.length()) {
-                        val obj = arrayArticles.getJSONObject(i)
+                            Log.d("THIRD_NEWS", obj.toString())
 
-                        Log.d("THIRD_NEWS", obj.toString())
+                            // urlToImage가 null 또는 빈 문자열이면 해당 뉴스를 건너뜁니다.
+                            val imageUrl = obj.getString("urlToImage")
+                            if (imageUrl.isNullOrBlank()) {
+                                continue
+                            }
 
-                        // urlToImage가 null 또는 빈 문자열이면 해당 뉴스를 건너뜁니다.
-                        val imageUrl = obj.getString("urlToImage")
-                        if (imageUrl.isNullOrBlank()) {
-                            continue
+                            val newsData = NewsData().apply {
+                                title = obj.getString("title")
+                                urlToImage = imageUrl
+                            }
+
+                            newsData.url = obj.getString("url")
+                            news.add(newsData)
                         }
 
-                        val newsData = NewsData().apply {
-                            title = obj.getString("title")
-                            urlToImage = imageUrl
-                        }
+                        thirdAdapter = MyThirdAdapter(news, requireContext())
+                        thirdRecyclerView.adapter = thirdAdapter
 
-                        newsData.url = obj.getString("url")
-                        news.add(newsData)
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
                     }
-
-                    thirdAdapter = MyThirdAdapter(news, requireContext())
-                    thirdRecyclerView.adapter = thirdAdapter
-
-                } catch (e: JSONException) {
-                    e.printStackTrace()
+                },
+                Response.ErrorListener { error ->
+                    Log.e("VOLLEY_ERROR", "Volley error: $error")
+                }) {
+                override fun getHeaders(): MutableMap<String, String> {
+                    val headers = HashMap<String, String>()
+                    headers["User-Agent"] = "Mozilla/5.0"
+                    return headers
                 }
-            },
-            Response.ErrorListener { error ->
-                Log.e("VOLLEY_ERROR", "Volley error: $error")
-            }) {
-            override fun getHeaders(): MutableMap<String, String> {
-                val headers = HashMap<String, String>()
-                headers["User-Agent"] = "Mozilla/5.0"
-                return headers
             }
+
+            queue.add(stringRequest)
         }
 
-        queue.add(stringRequest)
-    }
 }
