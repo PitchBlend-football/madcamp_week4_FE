@@ -28,12 +28,12 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initiation()
-        binding.chelseaBtn.setOnClickListener {
-            selectedTeam = 9
-            Log.e("chelsea", "chelsea")
-            complete(selectedTeam)
-        }
-        //complete()
+//        binding.chelseaBtn.setOnClickListener {
+//            selectedTeam = 9
+//            Log.e("chelsea", "chelsea")
+//            complete(selectedTeam)
+//        }
+        complete()
     }
 
     private fun initiation() {
@@ -41,42 +41,43 @@ class SignUpActivity : AppCompatActivity() {
 
         binding.liverpoolBtn.setOnClickListener {
             selectedTeam = 1
-            complete(selectedTeam)
+            //complete(selectedTeam)
         }
         binding.mancityBtn.setOnClickListener {
             selectedTeam = 2
-            complete(selectedTeam)
+            Log.e("mancity", "mancity")
+            //complete(selectedTeam)
         }
         binding.arsenalBtn.setOnClickListener {
             selectedTeam = 4
-            complete(selectedTeam)
+            //complete(selectedTeam)
         }
         binding.tottenhamBtn.setOnClickListener {
             selectedTeam = 5
-            complete(selectedTeam)
+            //complete(selectedTeam)
         }
         binding.manutdBtn.setOnClickListener {
             selectedTeam = 7
-            complete(selectedTeam)
+            //complete(selectedTeam)
         }
         binding.chelseaBtn.setOnClickListener {
-            selectedTeam = 9
+            selectedTeam = 8
             Log.e("chelsea", "chelsea")
-            complete(selectedTeam)
+            //complete(selectedTeam)
         }
 
     }
 
-    private fun complete(selected: Int) {
+    private fun complete() {
         completeBtn.setOnClickListener {
 
             val call = api.postSignUp(
                 binding.signUpName.text.toString(),
-                binding.signUpNickname.text.toString(),
-                binding.signUpEmail.text.toString(),
-                binding.signUpPassword.text.toString(),
                 binding.signUpPhone.text.toString(),
-                selected
+                binding.signUpPassword.text.toString(),
+                binding.signUpEmail.text.toString(),
+                binding.signUpNickname.text.toString(),
+                selectedTeam
             )
             call.enqueue(object : Callback<JsonObject> {
                 override fun onResponse(
@@ -98,11 +99,11 @@ class SignUpActivity : AppCompatActivity() {
             })
 
             Log.e("sign_up_name", binding.signUpName.text.toString())
-            Log.e("sign_up_name", binding.signUpNickname.text.toString())
-            Log.e("sign_up_name", binding.signUpEmail.text.toString())
-            Log.e("sign_up_name", binding.signUpPassword.text.toString())
             Log.e("sign_up_name", binding.signUpPhone.text.toString())
-            Log.e("sign_up_name", selected.toString())
+            Log.e("sign_up_name", binding.signUpPassword.text.toString())
+            Log.e("sign_up_name", binding.signUpEmail.text.toString())
+            Log.e("sign_up_name", binding.signUpNickname.text.toString())
+            Log.e("sign_up_name", selectedTeam.toString())
 
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
