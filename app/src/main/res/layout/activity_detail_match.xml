@@ -51,7 +51,7 @@
             android:id="@+id/home_team_logo"
             android:layout_width="50.98dp"
             android:layout_height="60dp"
-            android:src="@drawable/arsenal_logo"
+            android:src="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/match_start_time"
             app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +61,7 @@
             android:id="@+id/away_team_logo"
             android:layout_width="50.05dp"
             android:layout_height="60dp"
-            android:src="@drawable/tottenham_logo"
+            android:src="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/match_start_time"
@@ -71,7 +71,7 @@
             android:id="@+id/match_start_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="22:00"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +82,7 @@
             android:id="@+id/match_start_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="24 Sep 2023"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -892,7 +892,7 @@
                     android:id="@+id/image_card_home"
                     android:layout_width="100dp"
                     android:layout_height="120dp"
-                    android:src="@drawable/bukayo_saka_card"
+                    android:src="@drawable/chris_wood"
                     app:layout_constraintBottom_toBottomOf="@+id/top_scorers_title"
                     app:layout_constraintEnd_toStartOf="@+id/top_scorers_title"
                     app:layout_constraintStart_toStartOf="parent"
@@ -902,7 +902,7 @@
                     android:id="@+id/top_scorers_home"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="6 Goals"
+                    android:text="8 Goals"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:layout_marginTop="2dp"
@@ -914,7 +914,7 @@
                     android:id="@+id/image_card_away"
                     android:layout_width="100dp"
                     android:layout_height="120dp"
-                    android:src="@drawable/sonny_card"
+                    android:src="@drawable/bukayo_saka_card"
                     app:layout_constraintBottom_toBottomOf="@+id/top_scorers_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/top_scorers_title"
@@ -924,7 +924,7 @@
                     android:id="@+id/top_scorers_away"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12 Goals"
+                    android:text="6 Goals"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:layout_marginTop="2dp"
@@ -936,7 +936,8 @@
             
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
                 android:layout_marginTop="15dp">
 
                 <TextView
@@ -951,6 +952,18 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/expected_linup_pic"
+                    android:layout_width="match_parent"
+                    android:layout_height="700dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/nfo_ars"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/expected_linup_title" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -29,13 +29,13 @@
                 android:text="Arsenal"
                 android:textAlignment="textEnd"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <ImageView
                 android:id="@+id/home_logo"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="6dp"
                 android:src="@drawable/arsenal_logo" />
 
             <LinearLayout
@@ -67,7 +67,7 @@
                 android:id="@+id/away_logo"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="6dp"
                 android:src="@drawable/tottenham_logo" />
 
             <TextView
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:text="Tottenham"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
         </LinearLayout>
 

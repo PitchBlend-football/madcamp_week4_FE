@@ -62,7 +62,8 @@ class ExploreFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_explore, container, false)
+//        val view = inflater.inflate(R.layout.fragment_explore, container, false)
+        val view = inflater.inflate(R.layout.fragment_explore_fix, container, false)
 
         val sharedPref = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         accessToken = sharedPref.getString("accessToken", "")!!
@@ -92,7 +93,8 @@ class ExploreFragment : Fragment() {
         getThirdNews()
 
 
-        setupToggleAnimation(view)
+        //setupToggleAnimation(view)
+        clickAiExpectBtn(view)
         getTeamInfo()
 
         return view
@@ -160,38 +162,53 @@ class ExploreFragment : Fragment() {
         )
     }
 
-    private fun setupToggleAnimation(rootView: View) {
+//    private fun setupToggleAnimation(rootView: View) {
+//        val toggleCardView: CardView = rootView.findViewById(R.id.toggle)
+//        val aiDownButton: ImageButton = rootView.findViewById(R.id.ai_down_btn)
+//        val aiMainLayout: ConstraintLayout = rootView.findViewById(R.id.ai_main)
+//
+//        aiDownButton.setOnClickListener {
+//            val isExpanded = (toggleCardView.visibility == View.VISIBLE)
+//
+//            if (isExpanded) {
+//                toggleCardView.animate()
+//                    .setDuration(200)
+//                    .scaleY(0f)
+//                    .withEndAction {
+//                        toggleCardView.visibility = View.GONE
+//                        toggleCardView.scaleY = 1f
+//                    }
+//                aiDownButton.animate().setDuration(200).rotation(0f)
+//            } else {
+//                toggleCardView.visibility = View.VISIBLE
+//                toggleCardView.scaleY = 0f
+//                toggleCardView.animate()
+//                    .setDuration(200)
+//                    .scaleY(1f)
+//                aiDownButton.animate().setDuration(200).rotation(180f)
+//            }
+//
+//            // ai_main에 맞춰서 위치하도록 설정
+//            val params = toggleCardView.layoutParams as RelativeLayout.LayoutParams
+//            params.addRule(RelativeLayout.BELOW, R.id.ai_main)
+//            params.marginStart = aiMainLayout.marginStart
+//            params.marginEnd = aiMainLayout.marginEnd
+//            toggleCardView.layoutParams = params
+//        }
+//    }
+
+    private fun clickAiExpectBtn(rootView: View) {
         val toggleCardView: CardView = rootView.findViewById(R.id.toggle)
         val aiDownButton: ImageButton = rootView.findViewById(R.id.ai_down_btn)
-        val aiMainLayout: ConstraintLayout = rootView.findViewById(R.id.ai_main)
-
         aiDownButton.setOnClickListener {
-            val isExpanded = (toggleCardView.visibility == View.VISIBLE)
-
-            if (isExpanded) {
-                toggleCardView.animate()
-                    .setDuration(200)
-                    .scaleY(0f)
-                    .withEndAction {
-                        toggleCardView.visibility = View.GONE
-                        toggleCardView.scaleY = 1f
-                    }
+            toggleCardView.pivotY = 0f
+            if (toggleCardView.visibility == View.VISIBLE) {
                 aiDownButton.animate().setDuration(200).rotation(0f)
+                    .withEndAction { toggleCardView.visibility = View.GONE }
             } else {
                 toggleCardView.visibility = View.VISIBLE
-                toggleCardView.scaleY = 0f
-                toggleCardView.animate()
-                    .setDuration(200)
-                    .scaleY(1f)
                 aiDownButton.animate().setDuration(200).rotation(180f)
             }
-
-            // ai_main에 맞춰서 위치하도록 설정
-            val params = toggleCardView.layoutParams as RelativeLayout.LayoutParams
-            params.addRule(RelativeLayout.BELOW, R.id.ai_main)
-            params.marginStart = aiMainLayout.marginStart
-            params.marginEnd = aiMainLayout.marginEnd
-            toggleCardView.layoutParams = params
         }
     }
 

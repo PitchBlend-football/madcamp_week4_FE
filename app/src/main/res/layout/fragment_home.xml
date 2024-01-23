@@ -6,21 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeFragment">
 
-    <Button
-        android:id="@+id/before_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        android:text="Go to Arsnal VS Tottenham Hotspur"/>
-
-    <Button
-        android:id="@+id/after_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:visibility="invisible"
-        android:text="Go to Arsnal VS Tottenham Hotspur"/>
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -111,7 +96,7 @@
                             android:layout_weight="1"/>
 
                         <TextView
-                            android:layout_width="30dp"
+                            android:layout_width="25dp"
                             android:layout_height="wrap_content"
                             android:text="PL"
                             android:textAlignment="center"
@@ -119,7 +104,7 @@
                             android:textSize="14sp" />
 
                         <TextView
-                            android:layout_width="30dp"
+                            android:layout_width="25dp"
                             android:layout_height="wrap_content"
                             android:text="W"
                             android:textAlignment="center"
@@ -127,7 +112,7 @@
                             android:textSize="14sp"/>
 
                         <TextView
-                            android:layout_width="30dp"
+                            android:layout_width="25dp"
                             android:layout_height="wrap_content"
                             android:text="D"
                             android:textAlignment="center"
@@ -135,7 +120,7 @@
                             android:textSize="14sp"/>
 
                         <TextView
-                            android:layout_width="30dp"
+                            android:layout_width="25dp"
                             android:layout_height="wrap_content"
                             android:text="L"
                             android:textAlignment="center"
@@ -143,7 +128,7 @@
                             android:textSize="14sp"/>
 
                         <TextView
-                            android:layout_width="30dp"
+                            android:layout_width="25dp"
                             android:layout_height="wrap_content"
                             android:text="GD"
                             android:textAlignment="center"
@@ -171,7 +156,7 @@
                             android:layout_weight="1"/>
 
                         <TextView
-                            android:layout_width="180dp"
+                            android:layout_width="155dp"
                             android:layout_height="1dp"
                             android:background="@color/white"/>
                         
