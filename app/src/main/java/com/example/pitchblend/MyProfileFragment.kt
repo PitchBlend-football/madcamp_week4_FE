@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.android.volley.AuthFailureError
 import com.android.volley.Request
@@ -72,6 +73,15 @@ class MyProfileFragment : Fragment() {
             // Call the function to perform logout
             logoutUser()
         }
+
+        // CardView click listener
+        val communityCardView = view.findViewById<CardView>(R.id.communityCardView)
+        communityCardView.setOnClickListener {
+            // Start Community Activity when CardView is clicked
+            val intent = Intent(requireContext(), Community::class.java)
+            startActivity(intent)
+        }
+
     }
 
     // Function to perform logout
