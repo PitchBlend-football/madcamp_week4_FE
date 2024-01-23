@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.MediaController
 import android.widget.ScrollView
 import android.widget.VideoView
@@ -25,6 +26,8 @@ class AnalyzeFragment : Fragment() {
     private var lastClickTime: Long = 0
     private lateinit var sizeBigButton: ImageButton
     private lateinit var view: View
+    private lateinit var cheMciThumbnail: ImageView
+    private var isFirst = true
 
     private val hidePauseButtonDelay = 2000L // 2초
 
@@ -36,6 +39,15 @@ class AnalyzeFragment : Fragment() {
 
         videoView = view.findViewById(R.id.videoView)
         playPauseButton = view.findViewById(R.id.playPauseButton)
+        cheMciThumbnail = view.findViewById(R.id.che_man_thumbnail)
+
+        // onCreateView 메서드 내부에 아래 내용을 추가합니다.
+        videoView.setOnCompletionListener {
+            isFirst = true
+            isPlaying = false
+            cheMciThumbnail.visibility = View.VISIBLE
+            playPauseButton.visibility = View.VISIBLE
+        }
 
         videoView.setOnClickListener {
             val currentTime = System.currentTimeMillis()
@@ -89,6 +101,10 @@ class AnalyzeFragment : Fragment() {
         if (isPlaying) {
             videoView.pause()
         } else {
+            if (isFirst) {
+                cheMciThumbnail.visibility = View.GONE
+                isFirst = false
+            }
             videoView.start()
         }
         isPlaying = !isPlaying
