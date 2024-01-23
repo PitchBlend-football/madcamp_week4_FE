@@ -97,6 +97,9 @@ class DetailMatchActivity : AppCompatActivity() {
     private var topScorerPlayer = ""
     private lateinit var top_scorers_home: TextView
     private lateinit var top_scorers_away: TextView
+    private lateinit var image_card_home: ImageView
+    private lateinit var image_card_away: ImageView
+    private lateinit var expected_linup_pic: ImageView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -119,7 +122,8 @@ class DetailMatchActivity : AppCompatActivity() {
             getTopScorerHome(homeId)
             //getTopScorerAway(awayId)
             // 결과를 사용하는 로직
-            top_scorers_home.text = "$topScorerPlayer $goals" // 나중에 이거 아예 빼기. api 자체가 이상하다 선수가 없음.
+            //top_scorers_home.text = "$topScorerPlayer $goals" // 나중에 이거 아예 빼기. api 자체가 이상하다 선수가 없음.
+            setExtra()
         }
     }
 
@@ -173,6 +177,9 @@ class DetailMatchActivity : AppCompatActivity() {
 
         top_scorers_home = binding.topScorersHome
         top_scorers_away = binding.topScorersAway
+        image_card_home = binding.imageCardHome
+        image_card_away = binding.imageCardAway
+        expected_linup_pic = binding.expectedLinupPic
 
     }
 
@@ -487,6 +494,22 @@ class DetailMatchActivity : AppCompatActivity() {
         } catch (e: Exception) {
             // 예외 처리
             Log.e(ContentValues.TAG, "Error: ${e.message}")
+        }
+    }
+
+    private fun setExtra() {
+        if (intent.getStringExtra("matchTeams") == "Nottingham Forest VS Arsenal") {
+            image_card_home.setImageResource(R.drawable.chris_wood)
+            top_scorers_home.text = "8 Goals"
+            image_card_away.setImageResource(R.drawable.bukayo_saka_card)
+            top_scorers_home.text = "6 Goals"
+            expected_linup_pic.setImageResource(R.drawable.nfo_ars)
+        } else if (intent.getStringExtra("matchTeams") == "Luton VS Brighton") {
+            image_card_home.setImageResource(R.drawable.chris_wood)
+            top_scorers_home.text = "8 Goals"
+            image_card_away.setImageResource(R.drawable.bukayo_saka_card)
+            top_scorers_home.text = "6 Goals"
+            expected_linup_pic.setImageResource(R.drawable.nfo_ars)
         }
     }
 
