@@ -90,6 +90,13 @@ class DetailMatchActivity : AppCompatActivity() {
     private lateinit var away_recent_encounters_num: TextView
     private lateinit var draw_recent_encounters_num: TextView
 
+    private var homeId = 0
+    private var awayId = 0
+
+    private var goals = 0
+    private var topScorerPlayer = ""
+    private lateinit var top_scorers_home: TextView
+    private lateinit var top_scorers_away: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -108,6 +115,12 @@ class DetailMatchActivity : AppCompatActivity() {
             matchExpectedResultsAi()
             matchPreview()
         }
+        GlobalScope.launch(Dispatchers.Main) {
+            getTopScorerHome(homeId)
+            //getTopScorerAway(awayId)
+            // 결과를 사용하는 로직
+            top_scorers_home.text = "$topScorerPlayer $goals" // 나중에 이거 아예 빼기. api 자체가 이상하다 선수가 없음.
+        }
     }
 
     private fun initiation() {
@@ -121,6 +134,9 @@ class DetailMatchActivity : AppCompatActivity() {
         Picasso.get().load("${intent.getStringExtra("matchAwayLogo")}").into(binding.awayTeamLogo)
         binding.matchStartDate.text = intent.getStringExtra("matchDate")
         binding.matchStartTime.text = intent.getStringExtra("matchTime")
+
+        homeId = intent.getIntExtra("matchHomeId", 0)
+        awayId = intent.getIntExtra("matchAwayId", 0)
 
 
         home_win_percent_txt = binding.cardHomePercent
@@ -154,6 +170,9 @@ class DetailMatchActivity : AppCompatActivity() {
         home_recent_encounters_num = binding.recentEncountersCardHomeNum
         away_recent_encounters_num = binding.recentEncountersCardAwayNum
         draw_recent_encounters_num = binding.recentEncountersCardDrawNum
+
+        top_scorers_home = binding.topScorersHome
+        top_scorers_away = binding.topScorersAway
 
     }
 
@@ -443,6 +462,32 @@ class DetailMatchActivity : AppCompatActivity() {
         home_win_recent_graph.layoutParams = homeLayoutParam
         draw_recent_graph.layoutParams = drawLayoutParam
 
+    }
+
+    private suspend fun getTopScorerHome(homeId: Int?, dispatcher: CoroutineDispatcher = Dispatchers.IO) {
+        try {
+            val result = withContext(dispatcher) {
+                val call = api.getTopScorer(homeId!!) // goal 넣은 사람 나타냄
+                val response = call.execute()
+                response.body()
+            }
+            if (result != null) {
+                val players = result.response
+                for (player in players) {
+                    val playerGoal = if (player.statistics[0].goals.total != null) { player.statistics[0].goals.total } else { 0 }
+                    if (goals <= playerGoal!!) {
+                        goals = playerGoal
+                        topScorerPlayer = player.player.name
+                    }
+                }
+            } else {
+                // API 응답이 null인 경우의 처리
+                Log.e(ContentValues.TAG, "API 응답이 null입니다.")
+            }
+        } catch (e: Exception) {
+            // 예외 처리
+            Log.e(ContentValues.TAG, "Error: ${e.message}")
+        }
     }
 
     private fun dpToPx300(float: Float): Int {

@@ -14,6 +14,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import android.os.AsyncTask
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+import org.jsoup.Jsoup
 
 class AfterMatchActivity : AppCompatActivity() {
 
@@ -73,6 +78,8 @@ class AfterMatchActivity : AppCompatActivity() {
 
         val matchId = intent.getIntExtra("matchId", -1)
         initiation()
+        // AsyncTask를 사용하여 백그라운드 스레드에서 네트워크 요청 수행
+        MyAsyncTask().execute()
         clickBackBtn()
         GlobalScope.launch(Dispatchers.Main) {
             getScorersResult(matchId)
@@ -215,7 +222,11 @@ class AfterMatchActivity : AppCompatActivity() {
                     if (event.type == "Goal") {
                         if (event.team.id == homeId) {
                             homeScorersName.add(event.player.name)
-                            homeScorersTime.add("${event.time.elapsed}'")
+                            if (event.time.extra == null) {
+                                homeScorersTime.add("${event.time.elapsed}'")
+                            } else {
+                                homeScorersTime.add("${event.time.elapsed}'+${event.time.extra}'")
+                            }
                             when (event.detail) {
                                 "Penalty" -> {
                                     homeScorersType.add("PEN")
@@ -229,7 +240,11 @@ class AfterMatchActivity : AppCompatActivity() {
                             }
                         } else if (event.team.id == awayId) {
                             awayScorersName.add(event.player.name)
-                            awayScorersTime.add("${event.time.elapsed}'")
+                            if (event.time.extra == null) {
+                                awayScorersTime.add("${event.time.elapsed}'")
+                            } else {
+                                awayScorersTime.add("${event.time.elapsed}'+${event.time.extra}'")
+                            }
                             when (event.detail) {
                                 "Penalty" -> {
                                     awayScorersType.add("PEN")
@@ -353,4 +368,52 @@ class AfterMatchActivity : AppCompatActivity() {
         val pixels = (desiredHeightInDp * resources.displayMetrics.density).toInt()
         return pixels
     }
+
+    private inner class MyAsyncTask : AsyncTask<Void, Void, String>() {
+        override fun doInBackground(vararg params: Void?): String {
+            try {
+                // 네트워크 요청 수행
+                var makingUrl = ""
+                if (homeId == 62) {
+                    // 셰필드임. 셰필드를 Utd로 해놔서, 이것을 찾으셨나요? Sheffield United VS West Ham highlight video 이렇게 뜸.
+                    makingUrl = "https://www.google.com/search?q=" + intent.getStringExtra("matchTeams")!!.replace("Utd", "United").replace(" ", "+") + "+highlight+video"
+                } else {
+                    makingUrl = "https://www.google.com/search?q=" + intent.getStringExtra("matchTeams")!!.replace(" ", "+") + "+highlight+video"
+                }
+                val url = makingUrl
+                Log.e("google Url", url)
+                val doc = Jsoup.connect(url).get()
+
+                // body 태그 안에 있는 모든 링크 찾기
+                val links = doc.select("a")
+
+                // 12번째 링크의 href 가져오기
+                if (links.size >= 12) {
+                    val twelfthLink = links[11]
+                    return twelfthLink.attr("href")
+                } else {
+                    return "Not enough links found."
+                }
+            } catch (e: Exception) {
+                return "Failed to retrieve the page."
+            }
+        }
+
+        override fun onPostExecute(result: String) {
+            // 결과 출력
+            Log.e("google HTML", result)
+
+            // XML에서 정의한 YouTubePlayerView에 대한 참조 획득
+            val youtubePlayerView: YouTubePlayerView = findViewById(R.id.youtube_player_view)
+            // 동적으로 videoId 설정
+            val videoId = result.replace("https://www.youtube.com/watch?v=", "")
+            Log.e("google HTML", videoId)
+            youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+                override fun onReady(youTubePlayer: YouTubePlayer) {
+                    youTubePlayer.cueVideo(videoId, 0f)
+                }
+            })
+        }
+    }
+
 }
