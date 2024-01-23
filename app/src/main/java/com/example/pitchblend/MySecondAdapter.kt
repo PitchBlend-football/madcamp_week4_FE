@@ -11,10 +11,16 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.drawee.view.SimpleDraweeView
 
 class MySecondAdapter(private val mDataset: List<NewsData>, private val context: Context) :
     RecyclerView.Adapter<MySecondAdapter.MySecondViewHolder>() {
+
+    init {
+        // Fresco 초기화
+        Fresco.initialize(context)
+    }
 
     class MySecondViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         var TextView_title: TextView = v.findViewById(R.id.second_TextView_title)
@@ -43,6 +49,12 @@ class MySecondAdapter(private val mDataset: List<NewsData>, private val context:
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(newsUrl))
             context.startActivity(intent)
         }
+    }
+
+    // Fresco 해제
+    override fun onViewRecycled(holder: MySecondViewHolder) {
+        super.onViewRecycled(holder)
+        Fresco.getImagePipeline().clearCaches()
     }
 
     override fun getItemCount(): Int {
