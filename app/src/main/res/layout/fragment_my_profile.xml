@@ -136,7 +136,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="TOTTENHAM HOTSPUR"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@+id/teamLogo"
@@ -183,7 +183,7 @@
                         android:id="@+id/stadium_img"
                         android:layout_width="match_parent"
                         android:layout_height="160dp"
-                        android:src="@drawable/tot_stadium"
+                        android:src="@android:color/transparent"
                         android:scaleType="centerCrop"/>
                     
                     <LinearLayout
@@ -202,7 +202,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="6dp"
-                            android:text="Tottenham Hotspur Stadium, London, England"
+                            android:text=""
                             android:textSize="12sp"
                             android:textColor="@color/white"/>
                         

@@ -16,7 +16,7 @@
         android:layout_height="wrap_content">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/mobile_ticket_back_btn"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@android:color/transparent"
@@ -32,10 +32,10 @@
             android:text="Mobile Ticket"
             android:textColor="@color/white"
             android:textSize="26sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton"
+            app:layout_constraintBottom_toBottomOf="@+id/mobile_ticket_back_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageButton"/>
+            app:layout_constraintTop_toTopOf="@+id/mobile_ticket_back_btn"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -56,7 +56,7 @@
                 android:id="@+id/big_ticket"
                 android:layout_width="match_parent"
                 android:layout_height="700dp"
-                android:src="@drawable/big_ticket"
+                android:src="@drawable/big_ticket_low"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -73,16 +73,30 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/big_ticket_stadium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="46dp"
-                android:text="Tottenham Hotspur Stadium"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/big_ticket"
                 app:layout_constraintStart_toStartOf="@+id/big_ticket"
                 app:layout_constraintTop_toBottomOf="@+id/big_ticket_logo" />
+
+            <TextView
+                android:id="@+id/big_ticket_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/big_ticket"
+                app:layout_constraintStart_toStartOf="@+id/big_ticket"
+                app:layout_constraintTop_toBottomOf="@+id/big_ticket_stadium" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

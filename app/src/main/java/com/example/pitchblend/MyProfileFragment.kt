@@ -39,6 +39,7 @@ class MyProfileFragment : Fragment() {
     private lateinit var teamName: String
     private lateinit var stadium: String
     private lateinit var stadiumImg: String
+    private var teamId = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +68,12 @@ class MyProfileFragment : Fragment() {
             val stadiumIv = view.findViewById<ImageView>(R.id.stadium_img)
             Picasso.get().load("http://ec2-43-202-210-226.ap-northeast-2.compute.amazonaws.com/media/$stadiumImg").into(stadiumIv)
             view.findViewById<TextView>(R.id.stadium_address).text = stadium
+            // SharedPreferences 객체 가져오기
+            val sharedPref = requireContext().getSharedPreferences("teamId", Context.MODE_PRIVATE)
+            val editor = sharedPref.edit()
+            // userId 데이터 저장 (다른 activity나 fragment에서도 사용할 수 있도록 함)
+            editor.putInt("teamId", teamId)
+            editor.apply() // 변경 사항을 저장
         }
 
         val userProfile = UserProfileManager.getUserProfile()
@@ -177,6 +184,7 @@ class MyProfileFragment : Fragment() {
                 teamName = result.get("team_name").asString
                 stadium = result.get("stadium").asString
                 stadiumImg = result.get("stadium_image").asString
+                teamId = result.get("teamId").asInt
             } else {
                 // API 응답이 null인 경우의 처리
                 Log.e(ContentValues.TAG, "API 응답이 null입니다.")

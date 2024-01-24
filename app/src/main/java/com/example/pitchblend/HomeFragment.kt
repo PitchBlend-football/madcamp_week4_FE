@@ -106,7 +106,7 @@ class HomeFragment : Fragment() {
                     val result = response.body()
                     Log.e(ContentValues.TAG, "result: $result")
                     result?.let {
-                        matchScheduleAdapter.updateData(result.response)
+                        matchScheduleAdapter.updateData(result.response) // 하나씩 add하는게 아닌 한 번에 list를 다 대체할때는 이렇게?
                         //standingsAdapter.notifyDataSetChanged()
                         Log.e("matchScheduleList", "${matchScheduleAdapter.itemCount}")
                     }
