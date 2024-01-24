@@ -16,6 +16,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.os.Build
 import android.util.Log
+import android.widget.ImageButton
 import androidx.core.app.NotificationCompat
 
 class Community : AppCompatActivity() {
@@ -35,6 +36,14 @@ class Community : AppCompatActivity() {
             val intent = Intent(this, MyProfileFragment::class.java)
             // 기존의 Community 액티비티 종료
             finish()
+        }
+
+        // momButton 클릭 시 Mom.kt로 전환
+        val momButton = findViewById<ImageButton>(R.id.momButton)
+        momButton.setOnClickListener {
+            // Mom.kt로 이동하는 Intent 생성
+            val intent = Intent(this, Mom::class.java)
+            startActivity(intent)
         }
 
     }
