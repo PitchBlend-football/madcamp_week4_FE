@@ -12,65 +12,63 @@
         android:layout_height="match_parent"
         android:paddingHorizontal="16dp">
 
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Analyze Big Matches"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Highlights"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <TextView
+            android:id="@+id/detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Analyzing Ball Trajectory Using AI"
+            android:textColor="#9482A3"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/subtitle" />
+
         <ScrollView
             android:id="@+id/scroll_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="150dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
-                    android:text="Analyze Big Matches"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/subtitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="Highlights"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/title" />
-
-                <TextView
-                    android:id="@+id/detail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Analyzing Ball Trajectory Using AI"
-                    android:textColor="#9482A3"
-                    android:textSize="14sp"
-                    android:textStyle="italic"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/subtitle" />
-
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView"
+                    android:id="@+id/cardView1"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:layout_marginTop="10dp"
                     app:cardBackgroundColor="@color/item_purple"
                     app:cardCornerRadius="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/detail">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -127,7 +125,124 @@
                 </androidx.cardview.widget.CardView>
 
                 <VideoView
-                    android:id="@+id/videoView"
+                    android:id="@+id/videoView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:layout_centerInParent="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:src="@raw/facup_chelsea_mancity_out"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView1" />
+
+                <ImageView
+                    android:id="@+id/che_man_thumbnail"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/analyze_man_che_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView1" />
+
+                <ImageButton
+                    android:id="@+id/fullscreen_button1"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/full_screen"
+                    app:layout_constraintBottom_toBottomOf="@+id/videoView1"
+                    app:layout_constraintEnd_toEndOf="@+id/videoView1" />
+
+                <ImageButton
+                    android:id="@+id/playPauseButton1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/playbtn"
+                    app:layout_constraintBottom_toBottomOf="@+id/videoView1"
+                    app:layout_constraintEnd_toEndOf="@+id/videoView1"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="@+id/videoView1"
+                    app:layout_constraintTop_toTopOf="@+id/videoView1"
+                    app:layout_constraintVertical_bias="0.55" />
+
+
+<!--                videoView2-->
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="20dp"
+                    app:cardBackgroundColor="@color/item_purple"
+                    app:cardCornerRadius="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/videoView1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_marginStart="30dp"
+                            android:src="@drawable/chelsea" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0 - 0"
+                                android:textColor="@color/white"
+                                android:textSize="40sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="FT"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_marginEnd="30dp"
+                            android:src="@drawable/liverpool_logo" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <VideoView
+                    android:id="@+id/videoView2"
                     android:layout_width="match_parent"
                     android:layout_height="220dp"
                     android:layout_centerInParent="true"
@@ -137,21 +252,21 @@
                     android:src="@raw/playchelman"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cardView" />
+                    app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
                 <ImageView
-                    android:id="@+id/che_man_thumbnail"
+                    android:id="@+id/thumbnail2"
                     android:layout_width="match_parent"
                     android:layout_height="220dp"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/analyze_man_che_image"
                     android:scaleType="centerCrop"
+                    android:src="@drawable/che_liv_thumbnail"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cardView"/>
+                    app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
                 <ImageButton
-                    android:id="@+id/fullscreen_button"
+                    android:id="@+id/fullscreen_button2"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginEnd="10dp"
@@ -159,20 +274,20 @@
                     android:background="@android:color/transparent"
                     android:scaleType="centerInside"
                     android:src="@drawable/full_screen"
-                    app:layout_constraintBottom_toBottomOf="@+id/videoView"
-                    app:layout_constraintEnd_toEndOf="@+id/videoView" />
+                    app:layout_constraintBottom_toBottomOf="@+id/videoView2"
+                    app:layout_constraintEnd_toEndOf="@+id/videoView2" />
 
                 <ImageButton
-                    android:id="@+id/playPauseButton"
+                    android:id="@+id/playPauseButton2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:src="@drawable/playbtn"
-                    app:layout_constraintBottom_toBottomOf="@+id/videoView"
-                    app:layout_constraintEnd_toEndOf="@+id/videoView"
+                    app:layout_constraintBottom_toBottomOf="@+id/videoView2"
+                    app:layout_constraintEnd_toEndOf="@+id/videoView2"
                     app:layout_constraintHorizontal_bias="0.496"
-                    app:layout_constraintStart_toStartOf="@+id/videoView"
-                    app:layout_constraintTop_toTopOf="@+id/videoView"
+                    app:layout_constraintStart_toStartOf="@+id/videoView2"
+                    app:layout_constraintTop_toTopOf="@+id/videoView2"
                     app:layout_constraintVertical_bias="0.55" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

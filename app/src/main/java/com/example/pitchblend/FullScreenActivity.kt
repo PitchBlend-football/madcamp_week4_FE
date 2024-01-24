@@ -39,6 +39,7 @@ class FullScreenActivity : AppCompatActivity() {
 
         // 이전 Activity에서 전달된 비디오 경로와 현재 재생 위치를 가져옴
         val videoPath = intent.getStringExtra(EXTRA_VIDEO_PATH)
+        val currentVideo = intent.getIntExtra("num", 0)
         savedCurrentPosition = intent.getIntExtra(EXTRA_CURRENT_POSITION, 0)
         isPlaying = intent.getBooleanExtra("isPlaying", false)
 
@@ -72,6 +73,7 @@ class FullScreenActivity : AppCompatActivity() {
             val resultIntent = Intent()
             resultIntent.putExtra(EXTRA_CURRENT_POSITION, videoView.currentPosition)
             resultIntent.putExtra("isPlaying", isPlaying)
+            resultIntent.putExtra("num", currentVideo)
             setResult(Activity.RESULT_OK, resultIntent)
             finish()
         }
