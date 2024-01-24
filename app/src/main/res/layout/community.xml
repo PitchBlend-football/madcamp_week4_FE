@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -53,5 +54,177 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/teamName" />
+
+    <LinearLayout
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/teamLocation">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:text="ALARM"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:text="Set the alarm at the start of the match!"
+            android:textColor="#9482A3"
+            android:textSize="12sp"
+            android:textStyle="italic" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/alarmsun"
+                android:layout_width="304dp"
+                android:layout_height="47dp"
+                android:src="@drawable/alarmnight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton"
+                android:layout_width="75dp"
+                android:layout_height="44dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/switch_button_background"
+                android:checked="false"
+                android:textOff=""
+                android:textOn=""
+                app:layout_constraintBottom_toBottomOf="@+id/alarmsun"
+                app:layout_constraintEnd_toEndOf="@+id/alarmsun"
+                app:layout_constraintTop_toTopOf="@+id/alarmsun"
+                android:onClick="onToggleClicked"
+                />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingLeft="16dp"
+                android:text="Tottenham vs ManCity  5:00 AM"
+                android:textSize="12sp"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/alarmsun"
+                app:layout_constraintEnd_toStartOf="@+id/toggleButton"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/alarmsun"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.516" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/alarmsun2"
+                android:layout_width="304dp"
+                android:layout_height="47dp"
+                android:src="@drawable/alarmnight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton2"
+                android:layout_width="75dp"
+                android:layout_height="44dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/switch_button_background"
+                android:checked="false"
+                android:textOff=""
+                android:textOn=""
+                app:layout_constraintBottom_toBottomOf="@+id/alarmsun2"
+                app:layout_constraintEnd_toEndOf="@+id/alarmsun2"
+                app:layout_constraintTop_toTopOf="@+id/alarmsun2"
+                android:onClick="onToggleClicked"
+                />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textColor="@color/white"
+                android:paddingLeft="16dp"
+                android:text="Tottenham vs ManCity  5:00 AM"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/alarmsun2"
+                app:layout_constraintEnd_toStartOf="@+id/toggleButton2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/alarmsun2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.516" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/alarmsun3"
+                android:layout_width="304dp"
+                android:layout_height="47dp"
+                android:src="@drawable/alarmnight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton3"
+                android:layout_width="75dp"
+                android:layout_height="44dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/switch_button_background"
+                android:checked="false"
+                android:textOff=""
+                android:textOn=""
+                app:layout_constraintBottom_toBottomOf="@+id/alarmsun3"
+                app:layout_constraintEnd_toEndOf="@+id/alarmsun3"
+                app:layout_constraintTop_toTopOf="@+id/alarmsun3"
+                android:onClick="onToggleClicked"
+                />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingLeft="16dp"
+                android:textColor="@color/white"
+                android:text="Tottenham vs ManCity  5:00 AM"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/alarmsun3"
+                app:layout_constraintEnd_toStartOf="@+id/toggleButton3"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/alarmsun3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.516" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
