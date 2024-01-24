@@ -167,7 +167,7 @@ class AnalyzeFragment : Fragment() {
         sizeBigButton1.setOnClickListener {
             val intent = Intent(requireContext(), FullScreenActivity::class.java)
             intent.putExtra("num", 1)
-            intent.putExtra(FullScreenActivity.EXTRA_VIDEO_PATH, videoPath+"${R.raw.playchelman}")
+            intent.putExtra(FullScreenActivity.EXTRA_VIDEO_PATH, videoPath+"${R.raw.facup_chelsea_mancity_out}")
             // 현재 재생 위치를 전달
             intent.putExtra(FullScreenActivity.EXTRA_CURRENT_POSITION, videoView1.currentPosition)
             intent.putExtra("isPlaying", isPlaying1)
