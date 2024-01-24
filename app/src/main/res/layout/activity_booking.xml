@@ -41,7 +41,7 @@
             android:layout_height="wrap_content">
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/bookding_back_btn"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@android:color/transparent"
@@ -118,7 +118,7 @@
                         android:layout_height="140dp"
                         android:background="@android:color/transparent"
                         android:scaleType="centerInside"
-                        android:src="@drawable/small_ticket"
+                        android:src="@drawable/ticket_airplane"
                         app:layout_constraintBottom_toBottomOf="parent" />
 
                     <TextView
@@ -127,7 +127,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="20dp"
-                        android:text="TOT"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="24sp"
                         android:textStyle="bold"
@@ -140,7 +140,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="16dp"
-                        android:text="LIV"
+                        android:text=""
                         android:textAlignment="textEnd"
                         android:textColor="@color/black"
                         android:textSize="24sp"
@@ -154,7 +154,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginBottom="26dp"
-                        android:text="Tottenham Hotspur Stadium"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -167,7 +167,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="26dp"
-                        android:text="€ 250"
+                        android:text=""
                         android:textAlignment="textEnd"
                         android:textColor="@color/black"
                         android:textSize="16sp"
@@ -187,7 +187,7 @@
                         android:layout_height="140dp"
                         android:background="@android:color/transparent"
                         android:scaleType="centerInside"
-                        android:src="@drawable/small_ticket"
+                        android:src="@drawable/ticket_skyblue_airplane"
                         app:layout_constraintBottom_toBottomOf="parent" />
 
                     <TextView
@@ -196,7 +196,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="20dp"
-                        android:text="TOT"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="24sp"
                         android:textStyle="bold"
@@ -209,7 +209,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="16dp"
-                        android:text="LIV"
+                        android:text=""
                         android:textAlignment="textEnd"
                         android:textColor="@color/black"
                         android:textSize="24sp"
@@ -223,7 +223,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginBottom="26dp"
-                        android:text="Tottenham Hotspur Stadium"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -236,7 +236,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="26dp"
-                        android:text="€ 250"
+                        android:text=""
                         android:textAlignment="textEnd"
                         android:textColor="@color/black"
                         android:textSize="16sp"
@@ -256,7 +256,7 @@
                         android:layout_height="140dp"
                         android:background="@android:color/transparent"
                         android:scaleType="centerInside"
-                        android:src="@drawable/small_ticket"
+                        android:src="@drawable/ticket_blue_airplane"
                         app:layout_constraintBottom_toBottomOf="parent" />
 
                     <TextView
@@ -265,7 +265,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="20dp"
-                        android:text="TOT"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="24sp"
                         android:textStyle="bold"
@@ -278,7 +278,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="16dp"
-                        android:text="LIV"
+                        android:text=""
                         android:textAlignment="textEnd"
                         android:textColor="@color/black"
                         android:textSize="24sp"
@@ -292,7 +292,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginBottom="26dp"
-                        android:text="Tottenham Hotspur Stadium"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -305,7 +305,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="26dp"
-                        android:text="€ 250"
+                        android:text=""
                         android:textAlignment="textEnd"
                         android:textColor="@color/black"
                         android:textSize="16sp"

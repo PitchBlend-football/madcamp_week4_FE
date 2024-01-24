@@ -63,6 +63,9 @@ interface RetrofitInterface {
     @GET("stadium/")
     fun getStadiumInfo(@Header("authorization") authorization: String): Call<JsonObject>
 
+    @GET("info/get_match/")
+    fun getTeamSchedule(@Query("team") team: Int): Call<MatchScheduleResponse>
+
 
 
 
