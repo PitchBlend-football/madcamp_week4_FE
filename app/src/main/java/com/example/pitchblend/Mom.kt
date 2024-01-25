@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pitchblend.databinding.ActivityMomBinding
 import com.google.gson.JsonObject
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -257,6 +258,11 @@ class Mom : AppCompatActivity() {
         mom3CommentAdapter = MomCommentAdapter(mom3CommentList)
         mom3CommentRv.layoutManager = LinearLayoutManager(this)
         mom3CommentRv.adapter = mom3CommentAdapter
+
+        val teamLogo = intent.getStringExtra("teamLogo")
+        Picasso.get().load(teamLogo).into(mom1Logo)
+        Picasso.get().load(teamLogo).into(mom2Logo)
+        Picasso.get().load(teamLogo).into(mom3Logo)
     }
 
 
