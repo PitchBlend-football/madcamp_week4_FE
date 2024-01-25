@@ -18,6 +18,7 @@ import android.os.Build
 import android.util.Log
 import android.widget.ImageButton
 import androidx.core.app.NotificationCompat
+import com.squareup.picasso.Picasso
 
 class Community : AppCompatActivity() {
 
@@ -25,9 +26,18 @@ class Community : AppCompatActivity() {
     private val notificationId1 = 1
     private val notificationId2 = 2
     private val notificationId3 = 3
+
+    private var intentTeamLogo: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.community)
+
+        // intent해서 가지고 온 team 이름, 로고, 위치 설정
+        Picasso.get().load(intent.getStringExtra("teamLogo")).into(findViewById<ImageView>(R.id.logo))
+        intentTeamLogo = intent.getStringExtra("teamLogo")!!
+        findViewById<TextView>(R.id.teamName).text = intent.getStringExtra("teamName")
+        findViewById<TextView>(R.id.teamLocation).text = intent.getStringExtra("teamStadium")
 
         // back_btn 클릭 시 MyProfileFragment로 이동
         val backBtn = findViewById<ImageView>(R.id.back_btn)
@@ -43,6 +53,7 @@ class Community : AppCompatActivity() {
         momButton.setOnClickListener {
             // Mom.kt로 이동하는 Intent 생성
             val intent = Intent(this, Mom::class.java)
+            intent.putExtra("teamLogo", intentTeamLogo)
             startActivity(intent)
         }
 

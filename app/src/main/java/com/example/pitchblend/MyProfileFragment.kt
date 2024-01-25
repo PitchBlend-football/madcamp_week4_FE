@@ -79,6 +79,18 @@ class MyProfileFragment : Fragment() {
             // userId 데이터 저장 (다른 activity나 fragment에서도 사용할 수 있도록 함)
             editor.putInt("teamId", teamId)
             editor.apply() // 변경 사항을 저장
+
+            // Community ㄱㄱ
+            val communityCardView = view.findViewById<ImageButton>(R.id.communityCardView)
+            communityCardView.setOnClickListener {
+                // Start Community Activity when CardView is clicked
+                val intent = Intent(requireContext(), Community::class.java)
+                intent.putExtra("teamName", intentTeamName)
+                intent.putExtra("teamLogo", intentTeamLogo)
+                intent.putExtra("teamStadium", intentTeamStadium)
+                startActivity(intent)
+            }
+
         }
 
         val userProfile = UserProfileManager.getUserProfile()
@@ -111,13 +123,13 @@ class MyProfileFragment : Fragment() {
             logoutUser()
         }
 
-        // Community ㄱㄱ
-        val communityCardView = view.findViewById<ImageButton>(R.id.communityCardView)
-        communityCardView.setOnClickListener {
-            // Start Community Activity when CardView is clicked
-            val intent = Intent(requireContext(), Community::class.java)
-            startActivity(intent)
-        }
+//        // Community ㄱㄱ
+//        val communityCardView = view.findViewById<ImageButton>(R.id.communityCardView)
+//        communityCardView.setOnClickListener {
+//            // Start Community Activity when CardView is clicked
+//            val intent = Intent(requireContext(), Community::class.java)
+//            startActivity(intent)
+//        }
 
         // ticket ㄱㄱ
         val ticketCardView = view.findViewById<CardView>(R.id.ticket_cardview)
@@ -190,6 +202,7 @@ class MyProfileFragment : Fragment() {
             if (result != null) {
                 teamName = result.get("team_name").asString
                 stadium = result.get("stadium").asString
+                intentTeamStadium = result.get("stadium").asString
                 stadiumImg = result.get("stadium_image").asString
                 teamId = result.get("teamId").asInt
             } else {
