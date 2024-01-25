@@ -18,6 +18,7 @@ import android.os.Build
 import android.util.Log
 import android.widget.ImageButton
 import androidx.core.app.NotificationCompat
+import com.bumptech.glide.Glide
 
 class Community : AppCompatActivity() {
 
@@ -38,8 +39,14 @@ class Community : AppCompatActivity() {
             finish()
         }
 
+        // momButton을 ImageView로 변경하고 Glide를 사용하여 GIF 이미지 로드
+        val momButton = findViewById<ImageView>(R.id.momButton)
+        Glide.with(this)
+            .asGif()
+            .load(R.drawable.momball)  // R.drawable.momball은 프로젝트 리소스에 있는 GIF 파일의 리소스 ID로 변경해야 함
+            .into(momButton)
+
         // momButton 클릭 시 Mom.kt로 전환
-        val momButton = findViewById<ImageButton>(R.id.momButton)
         momButton.setOnClickListener {
             // Mom.kt로 이동하는 Intent 생성
             val intent = Intent(this, Mom::class.java)

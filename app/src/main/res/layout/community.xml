@@ -227,29 +227,29 @@
 
     </LinearLayout>
 
-    <ImageButton
+    <ImageView
         android:id="@+id/momButton"
         android:layout_width="280dp"
         android:layout_height="280dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/mom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linear"
-        app:layout_constraintVertical_bias="0.303" />
+        app:layout_constraintVertical_bias="0.29" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="18dp"
-        android:layout_marginBottom="10dp"
-        android:text="Pick your Man of the Match"
+        android:layout_marginBottom="8dp"
+        android:text="Pick your Man of the Match   >"
         android:textColor="@color/white"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="@+id/momButton"
         app:layout_constraintEnd_toEndOf="@+id/momButton"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.283"
         app:layout_constraintStart_toStartOf="@+id/momButton" />
 
 
