@@ -117,7 +117,7 @@ class ExploreFragment : Fragment() {
                             teamName = teamInfo.teamName
                             updateUI(teamInfo)
                             val searchQuery = "$teamName man latest interview with couch"
-                            //searchYoutube(searchQuery)
+                            searchYoutube(searchQuery)
                             Log.e("youtubeSearch", searchQuery)
 
                         } else {
@@ -213,7 +213,7 @@ class ExploreFragment : Fragment() {
     }
 
 
-    /*private fun searchYoutube(query: String) {
+    private fun searchYoutube(query: String) {
         // YouTube API 호출 URL 설정
         val searchURL =
             "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyBTu38sxD0mdAGHpE37MN6lMzYUHgcX4Qc"
@@ -283,7 +283,7 @@ class ExploreFragment : Fragment() {
         requestQueue.add(jsonObjectRequest)
     }
 
-     */
+
 
 
 
