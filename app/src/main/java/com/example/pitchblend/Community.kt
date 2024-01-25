@@ -19,9 +19,7 @@ import android.os.Build
 import android.util.Log
 import android.widget.ImageButton
 import androidx.core.app.NotificationCompat
-<<<<<<< HEAD
 import com.bumptech.glide.Glide
-=======
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -33,7 +31,6 @@ import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.Locale
->>>>>>> 624ba86db1bea3a68fe5f79d0ced42b6baea328b
 
 class Community : AppCompatActivity() {
 
