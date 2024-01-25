@@ -142,7 +142,7 @@
                         android:id="@+id/mom1_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pedro Porro"
+                        android:text=""
                         android:textSize="20sp"
                         android:textColor="@color/white"/>
                     
@@ -265,7 +265,7 @@
                     android:id="@+id/mom1_logo"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/tottenham_logo"
+                    android:src="@android:color/transparent"
                     android:scaleType="centerInside"/>
 
                 <TextView
@@ -382,7 +382,7 @@
                         android:id="@+id/mom2_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Giovani Lo Celso"
+                        android:text=""
                         android:textSize="20sp"
                         android:textColor="@color/white"/>
 
@@ -505,7 +505,7 @@
                     android:id="@+id/mom2_logo"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/tottenham_logo"
+                    android:src="@android:color/transparent"
                     android:scaleType="centerInside"/>
 
                 <TextView
@@ -622,7 +622,7 @@
                         android:id="@+id/mom3_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Giovani Lo Celso"
+                        android:text=""
                         android:textSize="20sp"
                         android:textColor="@color/white"/>
 
@@ -745,7 +745,7 @@
                     android:id="@+id/mom3_logo"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/tottenham_logo"
+                    android:src="@android:color/transparent"
                     android:scaleType="centerInside"/>
 
                 <TextView
