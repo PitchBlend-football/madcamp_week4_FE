@@ -1,22 +1,774 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="20dp"
+    android:paddingTop="40dp"
+    android:paddingBottom="10dp"
     android:background="@color/background"
     tools:context=".Mom">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Pick your Man of the Match!"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageButton
+            android:id="@+id/mom_back_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"
+            android:src="@drawable/arrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pick your Man of the Match!"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="@+id/mom_back_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/mom_back_btn"
+            app:layout_constraintTop_toTopOf="@+id/mom_back_btn" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView1"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/item_purple"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="30dp"
+                        android:src="@drawable/man_utd_logo" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2 - 2"
+                            android:textColor="@color/white"
+                            android:textSize="40sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="FT"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginEnd="30dp"
+                        android:src="@drawable/tottenham_logo" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/mom1_like_btn"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/like_soccerball"
+                    android:scaleType="centerInside"
+                    android:background="@android:color/transparent"/>
+                
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/king"
+                        android:scaleType="centerCrop"/>
+
+                    <TextView
+                        android:id="@+id/mom1_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pedro Porro"
+                        android:textSize="20sp"
+                        android:textColor="@color/white"/>
+                    
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/mom1_dislike_btn"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/dislike_soccerball"
+                    android:scaleType="centerInside"
+                    android:background="@android:color/transparent"/>
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/mom1_dislike_percent_graph"
+                    android:layout_width="300dp"
+                    android:layout_height="30dp"
+                    app:cardBackgroundColor="#DB0007"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingEnd="10dp"
+                        android:gravity="end">
+
+                        <TextView
+                            android:id="@+id/mom1_dislike_percent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0%"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/mom1_dislike_percent_graph"
+                            app:layout_constraintStart_toStartOf="@+id/mom1_dislike_percent_graph"
+                            app:layout_constraintTop_toTopOf="@+id/mom1_dislike_percent_graph" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/mom1_like_percent_graph"
+                    android:layout_width="300dp"
+                    android:layout_height="30dp"
+                    app:cardBackgroundColor="#FDEB71"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/mom1_dislike_percent_graph"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:paddingStart="10dp">
+
+                        <TextView
+                            android:id="@+id/mom1_like_percent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0%"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/mom1_like_percent_graph"
+                            app:layout_constraintEnd_toEndOf="@+id/mom1_like_percent_graph"
+                            app:layout_constraintTop_toTopOf="@+id/mom1_like_percent_graph" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Comment:"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"/>
+
+                <EditText
+                    android:id="@+id/mom1_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:hint="Comment를 입력하신 뒤\n찬성/반대 축구공 버튼을 눌러주세요"
+                    android:textColorHint="#686868"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/mom1_logo"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/tottenham_logo"
+                    android:scaleType="centerInside"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Fan's Comment"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mom1_comment_rv"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp"
+                tools:listitem="@layout/mom_comment_recyclerview"/>
+
+
+<!--mom2-->
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView2"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/item_purple"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="30dp"
+                        android:src="@drawable/tottenham_logo" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1 - 0"
+                            android:textColor="@color/white"
+                            android:textSize="40sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="FT"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginEnd="30dp"
+                        android:src="@drawable/bournemouth_logo" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/mom2_like_btn"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/like_soccerball"
+                    android:scaleType="centerInside"
+                    android:background="@android:color/transparent"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/king"
+                        android:scaleType="centerCrop"/>
+
+                    <TextView
+                        android:id="@+id/mom2_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Giovani Lo Celso"
+                        android:textSize="20sp"
+                        android:textColor="@color/white"/>
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/mom2_dislike_btn"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/dislike_soccerball"
+                    android:scaleType="centerInside"
+                    android:background="@android:color/transparent"/>
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/mom2_dislike_percent_graph"
+                    android:layout_width="300dp"
+                    android:layout_height="30dp"
+                    app:cardBackgroundColor="#DB0007"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingEnd="10dp"
+                        android:gravity="end">
+
+                        <TextView
+                            android:id="@+id/mom2_dislike_percent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0%"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/mom2_dislike_percent_graph"
+                            app:layout_constraintStart_toStartOf="@+id/mom2_dislike_percent_graph"
+                            app:layout_constraintTop_toTopOf="@+id/mom2_dislike_percent_graph" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/mom2_like_percent_graph"
+                    android:layout_width="300dp"
+                    android:layout_height="30dp"
+                    app:cardBackgroundColor="#FDEB71"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/mom2_dislike_percent_graph"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="10dp"
+                        android:gravity="start">
+
+                        <TextView
+                            android:id="@+id/mom2_like_percent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0%"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/mom2_like_percent_graph"
+                            app:layout_constraintEnd_toEndOf="@+id/mom2_like_percent_graph"
+                            app:layout_constraintTop_toTopOf="@+id/mom2_like_percent_graph" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Comment:"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"/>
+
+                <EditText
+                    android:id="@+id/mom2_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:hint="Comment를 입력하신 뒤\n찬성/반대 축구공 버튼을 눌러주세요"
+                    android:textColorHint="#686868"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/mom2_logo"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/tottenham_logo"
+                    android:scaleType="centerInside"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Fan's Comment"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mom2_comment_rv"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp"
+                tools:listitem="@layout/mom_comment_recyclerview"/>
+
+
+            <!--mom3-->
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView3"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/item_purple"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="30dp"
+                        android:src="@drawable/brighton_logo" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4 - 2"
+                            android:textColor="@color/white"
+                            android:textSize="40sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="FT"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginEnd="30dp"
+                        android:src="@drawable/tottenham_logo" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/mom3_like_btn"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/like_soccerball"
+                    android:scaleType="centerInside"
+                    android:background="@android:color/transparent"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/king"
+                        android:scaleType="centerCrop"/>
+
+                    <TextView
+                        android:id="@+id/mom3_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Giovani Lo Celso"
+                        android:textSize="20sp"
+                        android:textColor="@color/white"/>
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/mom3_dislike_btn"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/dislike_soccerball"
+                    android:scaleType="centerInside"
+                    android:background="@android:color/transparent"/>
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/mom3_dislike_percent_graph"
+                    android:layout_width="300dp"
+                    android:layout_height="30dp"
+                    app:cardBackgroundColor="#DB0007"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingEnd="10dp"
+                        android:gravity="end">
+
+                        <TextView
+                            android:id="@+id/mom3_dislike_percent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0%"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/mom3_dislike_percent_graph"
+                            app:layout_constraintStart_toStartOf="@+id/mom3_dislike_percent_graph"
+                            app:layout_constraintTop_toTopOf="@+id/mom3_dislike_percent_graph" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/mom3_like_percent_graph"
+                    android:layout_width="300dp"
+                    android:layout_height="30dp"
+                    app:cardBackgroundColor="#FDEB71"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/mom3_dislike_percent_graph"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="10dp"
+                        android:gravity="start">
+
+                        <TextView
+                            android:id="@+id/mom3_like_percent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0%"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/mom3_like_percent_graph"
+                            app:layout_constraintEnd_toEndOf="@+id/mom3_like_percent_graph"
+                            app:layout_constraintTop_toTopOf="@+id/mom3_like_percent_graph" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Comment:"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"/>
+
+                <EditText
+                    android:id="@+id/mom3_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:hint="Comment를 입력하신 뒤\n찬성/반대 축구공 버튼을 눌러주세요"
+                    android:textColorHint="#686868"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/mom3_logo"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/tottenham_logo"
+                    android:scaleType="centerInside"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Fan's Comment"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mom3_comment_rv"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp"
+                tools:listitem="@layout/mom_comment_recyclerview"/>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>
