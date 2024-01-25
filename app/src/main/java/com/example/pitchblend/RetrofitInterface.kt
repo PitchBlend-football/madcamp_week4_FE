@@ -2,17 +2,20 @@ package com.example.pitchblend
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Body
 
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -66,8 +69,18 @@ interface RetrofitInterface {
     @GET("info/get_match/")
     fun getTeamSchedule(@Query("team") team: Int): Call<MatchScheduleResponse>
 
+    @GET("community/players/")
+    fun getTeamMom(@Header("authorization") authorization: String): Call<ArrayList<JsonObject>>
 
 
+    @POST("community/vote/create/")
+    fun postVote(
+        @Header("authorization") authorization: String,
+        @Body request: JsonObject
+    ): Call<JsonObject>
+
+    @GET("community/vote/stats/{momId}/")
+    fun getMomVoteStat(@Header("authorization") authorization: String, @Path("momId") momId: Int): Call<VoteResultRequest>
 
 
 //    예시들
