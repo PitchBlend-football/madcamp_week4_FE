@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,26 +9,30 @@
     <VideoView
         android:id="@+id/fullScreenVideoView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
     <ImageButton
         android:id="@+id/playPauseButton"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/playbtn"
         android:background="@android:color/transparent"
         android:scaleType="centerInside"
-        android:layout_gravity="center" />
+        android:src="@drawable/playbtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/return_screen"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/full_screen"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@android:color/transparent"
         android:scaleType="centerInside"
-        android:layout_gravity="bottom|right"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"/>
+        android:src="@drawable/full_screen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

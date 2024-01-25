@@ -1,6 +1,9 @@
 package com.example.pitchblend
 
 import android.content.ContentValues
+import android.content.ContentValues.TAG
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,10 +18,30 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import android.os.AsyncTask
+import android.os.Handler
+import android.os.Looper
+import android.view.View
+import android.webkit.WebResourceRequest
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.core.content.ContextCompat
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
+import com.bumptech.glide.Glide
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayerBridge
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+import org.json.JSONException
 import org.jsoup.Jsoup
+import java.util.Timer
+import java.util.TimerTask
 
 class AfterMatchActivity : AppCompatActivity() {
 
@@ -81,6 +104,13 @@ class AfterMatchActivity : AppCompatActivity() {
         // AsyncTask를 사용하여 백그라운드 스레드에서 네트워크 요청 수행
         MyAsyncTask().execute()
         clickBackBtn()
+
+//        if (intent.getStringExtra("matchTeams")!! == "Bournemouth VS Liverpool") {
+//            searchYoutube()
+//        }
+        //searchYoutube()
+
+
         GlobalScope.launch(Dispatchers.Main) {
             getScorersResult(matchId)
             //getScorersResult(1035087)
@@ -369,7 +399,101 @@ class AfterMatchActivity : AppCompatActivity() {
         return pixels
     }
 
+
+//    private fun searchYoutube() {
+//        // YouTube API 호출 URL 설정
+//        val searchURL =
+//            "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyDk0muXlsKIlY5vCBd35KvCOZlx9HDyw8M"
+//        val keyword = "&q=" + intent.getStringExtra("matchTeams")!! + " highlight video"
+//        val maxResultsParam = "&maxResults=1"  // 여기를 1로 수정하여 하나의 비디오만 가져오도록 함
+//        val youtubeSearchURL = searchURL + keyword + maxResultsParam
+//
+//        // 네트워크 통신을 위한 객체 생성
+//        val requestQueue = Volley.newRequestQueue(this)
+//        val jsonObjectRequest = JsonObjectRequest(
+//            Request.Method.GET, youtubeSearchURL, null,
+//            { response ->
+//                // API 호출 결과 실행
+//                try {
+//                    val jArr = response.getJSONArray("items")
+//
+//                    if (jArr.length() > 0) {
+//                        val jData = jArr.optJSONObject(0)
+//                        val jid = jData.optJSONObject("id")
+//                        val videoId = jid.optString("videoId")
+//
+//                        // 썸네일 이미지 및 제목을 해당 뷰에 설정
+//                        val thumbnailImageView: ImageView? = findViewById(R.id.trial_thumbnail)
+//
+//                        thumbnailImageView?.let {
+//                            Glide.with(this)
+//                                .load("https://i.ytimg.com/vi/$videoId/hqdefault.jpg") // 썸네일 이미지 URL
+//                                .into(it)
+//                        }
+//                        thumbnailImageView?.setOnClickListener {
+//                            val intent = Intent(
+//                                Intent.ACTION_VIEW,
+//                                Uri.parse("https://www.youtube.com/watch?v=$videoId")
+//                            )
+//
+//                            // Intent를 처리할 수 있는 액티비티가 있는지 확인 후 실행
+//                            if (intent.resolveActivity(this.packageManager) != null) {
+//                                startActivity(intent)
+//                            } else {
+//                                // 유튜브 앱이나 웹 페이지가 없는 경우 사용자에게 메시지 표시
+//                                Toast.makeText(
+//                                    this,
+//                                    "YouTube app not installed",
+//                                    Toast.LENGTH_SHORT
+//                                ).show()
+//                            }
+//                        }
+//                    } else {
+//                        // 검색 결과가 없을 경우 처리
+//                        val thumbnailImageView: ImageView? = findViewById(R.id.youtubeThumbnailImageView)
+//                        //val titleTextView: TextView? = findViewById(R.id.youtubeTitleTextView)
+//
+//                        //titleTextView?.text = "No videos found on YouTube"
+//                    }
+//                } catch (e: JSONException) {
+//                    e.printStackTrace()
+//                }
+//            },
+//            { error -> Log.i("onErrorResponse", "" + error) })
+//
+//        requestQueue.add(jsonObjectRequest)
+//    }
+
+
+
+
+
+
     private inner class MyAsyncTask : AsyncTask<Void, Void, String>() {
+
+        private fun logIn() {
+            val webView = WebView(this@AfterMatchActivity)
+            webView.settings.javaScriptEnabled = true
+            webView.settings.domStorageEnabled = true
+            webView.settings.savePassword = true
+            webView.settings.saveFormData = true
+            webView.loadUrl("https://accounts.google.com/ServiceLogin?service=youtube&uilel=3&passive=true&continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Dm%26hl%3Dtr%26next%3Dhttps%253A%252F%252Fm.youtube.com%252F")
+            webView.webViewClient = object : WebViewClient() {
+                override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+                    // if webview redirects to youtube.com it means we're logged in
+                    if (request?.url.toString().startsWith("https://m.youtube.com") ||
+                        request?.url.toString().startsWith("https://www.youtube.com")
+                    ) {
+                        Log.d(TAG, "Logged in")
+                        Toast.makeText(this@AfterMatchActivity, "Logged in", Toast.LENGTH_SHORT).show()
+                        return false
+                    }
+                    return false
+                }
+            }
+        }
+
+
         override fun doInBackground(vararg params: Void?): String {
             try {
                 // 네트워크 요청 수행
@@ -397,23 +521,68 @@ class AfterMatchActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 return "Failed to retrieve the page."
             }
+            logIn()
         }
 
         override fun onPostExecute(result: String) {
             // 결과 출력
             Log.e("google HTML", result)
-
+            logIn()
             // XML에서 정의한 YouTubePlayerView에 대한 참조 획득
             val youtubePlayerView: YouTubePlayerView = findViewById(R.id.youtube_player_view)
             // 동적으로 videoId 설정
             val videoId = result.replace("https://www.youtube.com/watch?v=", "")
+//            val youtubeThumbnail: ImageView = findViewById(R.id.google_trial_thumbnail)
+//            val thumbnailUrl = "https://i.ytimg.com/vi/$videoId/maxresdefault.jpg"
+//            Picasso.get().load(thumbnailUrl).into(youtubeThumbnail)
             Log.e("google HTML", videoId)
+//            youtubeThumbnail.setOnClickListener {
+//                youtubeThumbnail.visibility = View.GONE
+//            }
+//            Handler(Looper.getMainLooper()).postDelayed({
+//                youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+//                    override fun onReady(youTubePlayer: YouTubePlayer) {
+//                        youTubePlayer.cueVideo(videoId, 0f)
+//                    }
+//                })
+//            }, 700)
+
+            val webView = WebView(this@AfterMatchActivity)
+
+            // Load ayp_youtube_player.html from the raw resource folder
+            //val htmlString = resources.openRawResource(R.raw.ayp_youtube_player).bufferedReader().use { it.readText() }
+            //webView.loadDataWithBaseURL("file:///android_asset/", htmlString, "text/html", "UTF-8", null)
+            //webView.loadUrl("javascript:initializeAdBlock()")
+
+            //.loadUrl("javascript:initializeAdBlock()")
             youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
                 override fun onReady(youTubePlayer: YouTubePlayer) {
+                    //webView.loadUrl("javascript:initializeAdBlock()")
                     youTubePlayer.cueVideo(videoId, 0f)
+                    webView.loadUrl("javascript:initializeAdBlock()")
                 }
+//                override fun onStateChange(youTubePlayer: YouTubePlayer, state: PlayerConstants.PlayerState) {
+//                    webView.loadUrl("javascript:initializeAdBlock()")
+//                    // 플레이어 상태 변경을 처리하는 메서드가 있다고 가정합니다.
+//                }
             })
+
+
+
+
+            // 만약에 play 되게 하고 싶다면, 이 주석을 풀어주면 됨
+//            youtubeThumbnail.setOnClickListener {
+//                youtubeThumbnail.visibility = View.GONE
+//            }
+//            youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+//                override fun onReady(youTubePlayer: YouTubePlayer) {
+//                    youTubePlayer.cueVideo(videoId, 0f)
+//                }
+//            })
+
         }
+
+
     }
 
 }
