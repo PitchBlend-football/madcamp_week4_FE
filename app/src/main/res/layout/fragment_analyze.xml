@@ -10,7 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="16dp">
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="30dp">
 
         <TextView
             android:id="@+id/title"
@@ -174,7 +175,7 @@
                     app:layout_constraintVertical_bias="0.55" />
 
 
-<!--                videoView2-->
+<!--videoView2-->
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardView2"
@@ -288,6 +289,127 @@
                     app:layout_constraintHorizontal_bias="0.496"
                     app:layout_constraintStart_toStartOf="@+id/videoView2"
                     app:layout_constraintTop_toTopOf="@+id/videoView2"
+                    app:layout_constraintVertical_bias="0.55" />
+
+
+
+
+
+
+                <!--videoView3-->
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="20dp"
+                    app:cardBackgroundColor="@color/item_purple"
+                    app:cardCornerRadius="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/videoView2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_marginStart="30dp"
+                            android:src="@drawable/manchestercity" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1 - 0"
+                                android:textColor="@color/white"
+                                android:textSize="40sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="FT"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_marginEnd="30dp"
+                            android:src="@drawable/arsenal_logo" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <VideoView
+                    android:id="@+id/videoView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:layout_centerInParent="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:src="@raw/playchelman"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+
+                <ImageView
+                    android:id="@+id/thumbnail3"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/mci_ars_thumbnail"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+
+                <ImageButton
+                    android:id="@+id/fullscreen_button3"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/full_screen"
+                    app:layout_constraintBottom_toBottomOf="@+id/videoView3"
+                    app:layout_constraintEnd_toEndOf="@+id/videoView3" />
+
+                <ImageButton
+                    android:id="@+id/playPauseButton3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/playbtn"
+                    app:layout_constraintBottom_toBottomOf="@+id/videoView3"
+                    app:layout_constraintEnd_toEndOf="@+id/videoView3"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="@+id/videoView3"
+                    app:layout_constraintTop_toTopOf="@+id/videoView3"
                     app:layout_constraintVertical_bias="0.55" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

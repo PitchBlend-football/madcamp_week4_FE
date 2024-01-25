@@ -40,6 +40,14 @@ class AnalyzeFragment : Fragment() {
     private var lastClickTime2: Long = 0
     private var isFirst2 = true
 
+    private lateinit var videoView3: VideoView
+    private lateinit var playPauseButton3: ImageButton
+    private lateinit var sizeBigButton3: ImageButton
+    private lateinit var thumbnail3: ImageView
+    private var isPlaying3 = false
+    private var lastClickTime3: Long = 0
+    private var isFirst3 = true
+
     private var videoPath = ""
 
     private var videoViewList = ArrayList<VideoView>()
@@ -83,6 +91,14 @@ class AnalyzeFragment : Fragment() {
                 if (isPlaying2) {
                     playPauseButton2.visibility = View.GONE
                     videoView2.start() // 비디오를 다시 시작
+                }
+            } else if (currentVideo == 3) {
+                val currentPosition = data?.getIntExtra(FullScreenActivity.EXTRA_CURRENT_POSITION, 0) ?: 0
+                videoView3.seekTo(currentPosition)
+                isPlaying3 = data?.getBooleanExtra("isPlaying", false) ?: false
+                if (isPlaying3) {
+                    playPauseButton3.visibility = View.GONE
+                    videoView3.start() // 비디오를 다시 시작
                 }
             }
         }
@@ -161,6 +177,42 @@ class AnalyzeFragment : Fragment() {
 
 
 
+        // video3 고쳐~!~
+        videoView3 = view.findViewById(R.id.videoView3)
+        playPauseButton3 = view.findViewById(R.id.playPauseButton3)
+        sizeBigButton3 = view.findViewById(R.id.fullscreen_button3)
+        thumbnail3 = view.findViewById(R.id.thumbnail3)
+
+        //videoViewList.add(videoView1)
+
+        videoView3.setOnCompletionListener {
+            isFirst3 = true
+            isPlaying3 = false
+            thumbnail3.visibility = View.VISIBLE
+            playPauseButton3.visibility = View.VISIBLE
+        }
+
+        videoView3.setOnClickListener {
+            val currentTime = System.currentTimeMillis()
+            if (currentTime - lastClickTime3 >= hidePauseButtonDelay) {
+                togglePlayPauseState(3)
+                updatePlayPauseButtonVisibility(3)
+                lastClickTime3 = currentTime
+            }
+        }
+
+        playPauseButton3.setOnClickListener {
+            togglePlayPauseState(3)
+            updatePlayPauseButtonVisibility(3)
+        }
+
+        videoView3.setVideoPath(videoPath+"${R.raw.mci_ars_3}")
+        videoView3.setOnPreparedListener {
+            updatePlayPauseButtonVisibility(3)
+        }
+
+
+
     }
 
     private fun fullSize() {
@@ -181,6 +233,16 @@ class AnalyzeFragment : Fragment() {
             // 현재 재생 위치를 전달
             intent.putExtra(FullScreenActivity.EXTRA_CURRENT_POSITION, videoView2.currentPosition)
             intent.putExtra("isPlaying", isPlaying2)
+            startActivityForResult(intent, REQUEST_FULLSCREEN)
+        }
+
+        sizeBigButton3.setOnClickListener {
+            val intent = Intent(requireContext(), FullScreenActivity::class.java)
+            intent.putExtra("num", 3)
+            intent.putExtra(FullScreenActivity.EXTRA_VIDEO_PATH, videoPath+"${R.raw.mci_ars_3}")
+            // 현재 재생 위치를 전달
+            intent.putExtra(FullScreenActivity.EXTRA_CURRENT_POSITION, videoView3.currentPosition)
+            intent.putExtra("isPlaying", isPlaying3)
             startActivityForResult(intent, REQUEST_FULLSCREEN)
         }
     }
@@ -208,6 +270,17 @@ class AnalyzeFragment : Fragment() {
                 videoView2.start()
             }
             isPlaying2 = !isPlaying2
+        } else if (index == 3) {
+            if (isPlaying3) {
+                videoView3.pause()
+            } else {
+                if (isFirst3) {
+                    thumbnail3.visibility = View.GONE
+                    isFirst3 = false
+                }
+                videoView3.start()
+            }
+            isPlaying3 = !isPlaying3
         }
     }
 
@@ -216,6 +289,8 @@ class AnalyzeFragment : Fragment() {
             playPauseButton1.visibility = if (isPlaying1) View.GONE else View.VISIBLE
         } else if (index == 2) {
             playPauseButton2.visibility = if (isPlaying2) View.GONE else View.VISIBLE
+        } else if (index == 3) {
+            playPauseButton3.visibility = if (isPlaying3) View.GONE else View.VISIBLE
         }
     }
 
