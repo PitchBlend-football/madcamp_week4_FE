@@ -126,70 +126,82 @@ class Mom : AppCompatActivity() {
 
             mom1LikeBtn.setOnClickListener {
                 is_like = true
-                postVote(1)
                 GlobalScope.launch(Dispatchers.Main) {
-                    getMomVoteStat(1)
-                    val mom1LayoutParam = mom1LikePercentGraph.layoutParams
-                    val mom1LikePercentGraphLength = dpToPx300(mom1Length / 100f)
-                    mom1LayoutParam.width = mom1LikePercentGraphLength
-                    mom1LikePercentGraph.layoutParams = mom1LayoutParam
+                    postVote(1)
+                    GlobalScope.launch(Dispatchers.Main) {
+                        getMomVoteStat(1)
+                        val mom1LayoutParam = mom1LikePercentGraph.layoutParams
+                        val mom1LikePercentGraphLength = dpToPx300(mom1Length / 100f)
+                        mom1LayoutParam.width = mom1LikePercentGraphLength
+                        mom1LikePercentGraph.layoutParams = mom1LayoutParam
+                    }
                 }
             }
             mom1DislikeBtn.setOnClickListener {
                 is_like = false
-                postVote(1)
                 GlobalScope.launch(Dispatchers.Main) {
-                    getMomVoteStat(1)
-                    val mom1LayoutParam = mom1LikePercentGraph.layoutParams
-                    val mom1LikePercentGraphLength = dpToPx300(mom1Length / 100f)
-                    mom1LayoutParam.width = mom1LikePercentGraphLength
-                    mom1LikePercentGraph.layoutParams = mom1LayoutParam
+                    postVote(1)
+                    GlobalScope.launch(Dispatchers.Main) {
+                        getMomVoteStat(1)
+                        val mom1LayoutParam = mom1LikePercentGraph.layoutParams
+                        val mom1LikePercentGraphLength = dpToPx300(mom1Length / 100f)
+                        mom1LayoutParam.width = mom1LikePercentGraphLength
+                        mom1LikePercentGraph.layoutParams = mom1LayoutParam
+                    }
                 }
             }
 
             mom2LikeBtn.setOnClickListener {
                 is_like = true
-                postVote(2)
                 GlobalScope.launch(Dispatchers.Main) {
-                    getMomVoteStat(2)
-                    val mom2LayoutParam = mom2LikePercentGraph.layoutParams
-                    val mom2LikePercentGraphLength = dpToPx300(mom2Length / 100f)
-                    mom2LayoutParam.width = mom2LikePercentGraphLength
-                    mom2LikePercentGraph.layoutParams = mom2LayoutParam
+                    postVote(2)
+                    GlobalScope.launch(Dispatchers.Main) {
+                        getMomVoteStat(2)
+                        val mom2LayoutParam = mom2LikePercentGraph.layoutParams
+                        val mom2LikePercentGraphLength = dpToPx300(mom2Length / 100f)
+                        mom2LayoutParam.width = mom2LikePercentGraphLength
+                        mom2LikePercentGraph.layoutParams = mom2LayoutParam
+                    }
                 }
             }
             mom2DislikeBtn.setOnClickListener {
                 is_like = false
-                postVote(2)
                 GlobalScope.launch(Dispatchers.Main) {
-                    getMomVoteStat(2)
-                    val mom2LayoutParam = mom2LikePercentGraph.layoutParams
-                    val mom2LikePercentGraphLength = dpToPx300(mom2Length / 100f)
-                    mom2LayoutParam.width = mom2LikePercentGraphLength
-                    mom2LikePercentGraph.layoutParams = mom2LayoutParam
+                    postVote(2)
+                    GlobalScope.launch(Dispatchers.Main) {
+                        getMomVoteStat(2)
+                        val mom2LayoutParam = mom2LikePercentGraph.layoutParams
+                        val mom2LikePercentGraphLength = dpToPx300(mom2Length / 100f)
+                        mom2LayoutParam.width = mom2LikePercentGraphLength
+                        mom2LikePercentGraph.layoutParams = mom2LayoutParam
+                    }
                 }
             }
 
             mom3LikeBtn.setOnClickListener {
                 is_like = true
-                postVote(3)
                 GlobalScope.launch(Dispatchers.Main) {
-                    getMomVoteStat(3)
-                    val mom3LayoutParam = mom3LikePercentGraph.layoutParams
-                    val mom3LikePercentGraphLength = dpToPx300(mom3Length / 100f)
-                    mom3LayoutParam.width = mom3LikePercentGraphLength
-                    mom3LikePercentGraph.layoutParams = mom3LayoutParam
+                    postVote(3)
+                    GlobalScope.launch(Dispatchers.Main) {
+                        getMomVoteStat(3)
+                        val mom3LayoutParam = mom3LikePercentGraph.layoutParams
+                        val mom3LikePercentGraphLength = dpToPx300(mom3Length / 100f)
+                        mom3LayoutParam.width = mom3LikePercentGraphLength
+                        mom3LikePercentGraph.layoutParams = mom3LayoutParam
+                    }
                 }
             }
             mom3DislikeBtn.setOnClickListener {
                 is_like = false
-                postVote(3)
                 GlobalScope.launch(Dispatchers.Main) {
-                    getMomVoteStat(3)
-                    val mom3LayoutParam = mom3LikePercentGraph.layoutParams
-                    val mom3LikePercentGraphLength = dpToPx300(mom3Length / 100f)
-                    mom3LayoutParam.width = mom3LikePercentGraphLength
-                    mom3LikePercentGraph.layoutParams = mom3LayoutParam
+                    postVote(3)
+                    GlobalScope.launch(Dispatchers.Main) {
+                        getMomVoteStat(3)
+                        val mom3LayoutParam = mom3LikePercentGraph.layoutParams
+                        val mom3LikePercentGraphLength = dpToPx300(mom3Length / 100f)
+                        mom3LayoutParam.width = mom3LikePercentGraphLength
+                        mom3LikePercentGraph.layoutParams = mom3LayoutParam
+                    }
                 }
             }
 
@@ -272,7 +284,7 @@ class Mom : AppCompatActivity() {
         }
     }
 
-    private fun postVote(mom: Int) {
+    private suspend fun postVote(mom: Int, dispatcher: CoroutineDispatcher = Dispatchers.IO) {
         //mom == 1이면 첫번째, 2면 2번째, 3이면 3번째
 
         //postVote(momIdList[mom-1], true, "Really Good")
@@ -284,44 +296,68 @@ class Mom : AppCompatActivity() {
             2 -> { comment = mom2Comment.text.toString() }
             3 -> { comment = mom3Comment.text.toString() }
         }
-//            PostVoteRequest(
-//                momIdList[mom-1],
-//                is_like,
-//                comment
-//            )
 
-        val call = api.postVote(
-            "Bearer $accessToken",
-//            momIdList[mom-1],
-//            is_like,
-//            comment
-            JsonObject().apply {
-                addProperty("player", momIdList[mom-1])
-                addProperty("is_like", is_like)
-                addProperty("comment", comment)
-            }
-        )
-        call.enqueue(object : Callback<JsonObject> {
-            override fun onResponse(
-                call: Call<JsonObject>,
-                response: Response<JsonObject>
-            ) {
-                if (response.isSuccessful) {
-                    val result = response.body()
-                    Log.e("Lets go", "$result")
-                    mom1Comment.text.clear()
-                    mom2Comment.text.clear()
-                    mom3Comment.text.clear()
-                    Log.e("Lets go", "success!! good!!")
-                } else {
-                    Log.e("Lets go", "what's wrong...")
-                }
-            }
 
-            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-                Log.e("mad..nn", "so sad plz")
+        try {
+            val result = withContext(dispatcher) {
+                val call = api.postVote(
+                    "Bearer $accessToken",
+                    JsonObject().apply {
+                        addProperty("player", momIdList[mom-1])
+                        addProperty("is_like", is_like)
+                        addProperty("comment", comment)
+                    })
+                val response = call.execute()
+                response.body()
             }
-        })
+            if (result != null) {
+                Log.e("Lets go", "$result")
+                mom1Comment.text.clear()
+                mom2Comment.text.clear()
+                mom3Comment.text.clear()
+
+            } else {
+                // API 응답이 null인 경우의 처리
+                Log.e(ContentValues.TAG, "API 응답이 null입니다.")
+            }
+        } catch (e: Exception) {
+            // 예외 처리
+            Log.e(ContentValues.TAG, "Error: ${e.message}")
+        }
+
+
+//        val call = api.postVote(
+//            "Bearer $accessToken",
+////            momIdList[mom-1],
+////            is_like,
+////            comment
+//            JsonObject().apply {
+//                addProperty("player", momIdList[mom-1])
+//                addProperty("is_like", is_like)
+//                addProperty("comment", comment)
+//            }
+//        )
+//        call.enqueue(object : Callback<JsonObject> {
+//            override fun onResponse(
+//                call: Call<JsonObject>,
+//                response: Response<JsonObject>
+//            ) {
+//                if (response.isSuccessful) {
+//                    val result = response.body()
+//                    Log.e("Lets go", "$result")
+//                    mom1Comment.text.clear()
+//                    mom2Comment.text.clear()
+//                    mom3Comment.text.clear()
+//                    Log.e("Lets go", "success!! good!!")
+//                } else {
+//                    Log.e("Lets go", "what's wrong...")
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+//                Log.e("mad..nn", "so sad plz")
+//            }
+//        })
     }
 
     private suspend fun getMomVoteStat(mom: Int, dispatcher: CoroutineDispatcher = Dispatchers.IO) {

@@ -41,6 +41,11 @@ class MyProfileFragment : Fragment() {
     private lateinit var stadiumImg: String
     private var teamId = 0
 
+    private var intentTeamLogo: String = ""
+    private var intentTeamName: String = ""
+    private var intentTeamStadium: String = ""
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -83,6 +88,7 @@ class MyProfileFragment : Fragment() {
 
             // team_name을 대문자로 변환하여 TextView에 설정
             view.findViewById<TextView>(R.id.teamName).text = it.teamName.toUpperCase()
+            intentTeamName = it.teamName.toUpperCase()
 
             // logo_url을 ImageView에 설정 (Glide 사용)
             val teamLogoImageView = view.findViewById<ImageView>(R.id.teamLogo)
@@ -95,6 +101,7 @@ class MyProfileFragment : Fragment() {
             Glide.with(this)
                 .load(it.logoUrl)
                 .into(profileImageView)
+            intentTeamLogo  = it.logoUrl
         }
 
         // Logout button click listener
